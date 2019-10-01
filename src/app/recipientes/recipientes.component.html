@@ -1,0 +1,50 @@
+<div id="todo" class="mat-typography">
+<mat-toolbar id="barraTop" class="mat-elevation-z1">
+    <mat-toolbar-row class="barraTB">
+      <button class = "botonSup" mat-raised-button (click) = "nuevo()">
+        <mat-icon class="iconoSup" svgIcon="mas"></mat-icon>
+        Agregar una alerta
+      </button>
+      <span class="example-spacer">{{ totalRegistros }}</span>
+      <button class = "botonBuscar" mat-raised-button [matTooltip] = "actualizarTT" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "actualizar()">
+        <mat-icon class="iconoMail" svgIcon="actualizar"></mat-icon>
+      </button>
+      <button class = "botonBuscar" mat-raised-button [matTooltip] = "buscarTT" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "buscar()">
+        <mat-icon class="iconoMail" svgIcon="buscar"></mat-icon>
+      </button>
+      <div class="buscadorCaja">
+        <mat-form-field class="buscador" *ngIf="verBuscar">
+          <input #txtBuscar matInput class="buscarTXT" type="text" [(ngModel)]="textoBuscar" (keydown.enter)="filtrar()" (keydown.escape)="escapar()" >
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="verTarjetas">
+    <div class="tarjetaTabla" *ngFor="let registro of registros; let i = index">
+        <button class="tarjeta" [style.borderColor]="(registro.miestatus=='activo' ? 'white' : 'tomato')" [style.boxShadow]="(registro.miestatus=='activo' ? 'none' : '0px 0px 2px 2px tomato')" mat-button (click)="accion(i)" >
+          <div *ngIf="registro.miestatus=='inactivo'" class="iconoIna"><mat-icon svgIcon="inactivo"></mat-icon></div>
+          <div class="tarjetaTotal">
+            <div class="tarjetaIcon">
+              <mat-icon class="itemIcon" svgIcon="alerta"></mat-icon>
+            </div>
+            <div class="tarjetaDatos">
+                <div class="nombreReg">{{ registro.nombre }}</div>
+                <div class="dosDatos">
+                  <div class="tituloIzq">ID único</div>
+                  <div class="tituloDer">Último cambio</div>                  
+                                    
+                </div>
+                <div class="dosDatos">
+                  <div class="valorIzq">{{ registro.id }}</div>
+                  <div class="valorDer">{{ registro.fecham }}</div>
+                </div>
+                <div class="titulo">Usuario</div>
+                <div>{{ registro.userm }}</div>
+            </div>
+          </div>
+        </button>
+      </div>
+  </div>
+  </div>

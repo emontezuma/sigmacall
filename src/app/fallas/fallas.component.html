@@ -1,0 +1,56 @@
+<div id="todo" class="mat-typography">
+    <mat-toolbar id="barraTop" class="mat-elevation-z1">
+        <mat-toolbar-row class="barraTB">
+          <span class="example-spacer">{{ totalRegistros }}</span>
+          <button class = "botonBuscar" mat-raised-button [matTooltip] = "buscarTT" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "buscar()">
+            <mat-icon class="iconoMail" svgIcon="buscar"></mat-icon>
+          </button>
+          <button class = "botonBuscar" mat-raised-button [matTooltip] = "cambiarV" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "cambiarVista()">
+            <mat-icon class="iconoMail" svgIcon="views"></mat-icon>
+          </button>
+          <button class = "botonBuscar" mat-raised-button [matTooltip] = "ayudaD" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "descargar()">
+            <mat-icon class="iconoMail" svgIcon="descargar"></mat-icon>
+          </button>
+          <div class="buscadorCaja">
+            <mat-form-field class="buscador" *ngIf="verBuscar">
+              <input #txtBuscar matInput class="buscarTXT" type="text" [(ngModel)]="textoBuscar" (keydown.enter)="filtrar()" (keydown.escape)="escapar()" >
+            </mat-form-field>
+        </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    
+      <div class="verTarjetas">
+        <div class="equipoEFI" [@efecto]="falla.estado" *ngFor="let falla of registros; let i = index" [style.boxShadow]="(falla.escalamientos != '0' ? escaladas_color_todo : '0px 0px 0px 0px #AAAAAA')" [style.borderColor]="(falla.escalamientos != '0' ? escaladas_color : '#AAAAAA')">
+            <div class="cajaGeneral0">              
+              <div class="cajaTitulo11">              
+                <div class="titulo">Estación</div>  
+                <div class="valorF" [style.color]="(falla.escalamientos != '0' ? escaladas_color : '#EEEEEE')">{{ falla.estacion }}</div> 
+              </div>
+              <div class="cajaTitulo12">              
+                <div class="titulo">Tiempo</div>
+                <div class="valorF" [style.color]="(falla.escalamientos != '0' ? escaladas_color : '#EEEEEE')">{{ falla.van }}</div> 
+                <div class="escalado" *ngIf="falla.escalamientos!='0'" [style.backgroundColor]="escaladas_color">Esc</div> 
+            </div>
+        </div>
+        <div [ngClass]="{cajaGeneral1: !vista_resumida_fallas, cajaGeneral2: vista_resumida_fallas}">              
+          <div class="titulo" *ngIf="!vista_resumida_fallas">Descripción</div>
+          <div [ngClass]="{valorF3: !vista_resumida_fallas, valorF4: vista_resumida_fallas}">{{ falla.descripcion }}</div> 
+        </div>
+          <div class="cajaGeneral" *ngIf="!vista_resumida_fallas">              
+            <div class="cajaTitulo3">              
+              <div class="titulo">Prioridad</div>
+              <div class="valorF2">{{ falla.prioridad }}</div> 
+            </div>
+            <div class="cajaTitulo3">              
+              <div class="titulo">Nave</div>
+              <div class="valorF2">{{ falla.nave }}</div> 
+            </div>
+            <div class="cajaTitulo3">              
+              <div class="titulo">Código</div>  
+              <div class="valorF2">{{ falla.codigo }}</div> 
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+       

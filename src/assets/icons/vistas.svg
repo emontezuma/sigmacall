@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" width="32" height="32" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve" viewbox="0 0 32 32">
+
+<g>
+	<defs>
+		<path id="57870612_SVGID_1__focus" d="M23,58h-6l3.751-14h6L23,58z M41,58h6l-3.751-14h-6L41,58z M35,8c0-1.104-0.896-2-2-2h-2    c-1.104,0-2,0.896-2,2v4c0,1.104,0.896,2,2,2h2c1.104,0,2-0.896,2-2V8z"></path>
+	</defs>
+	<use xlink:href="#57870612_SVGID_1__focus" class="stshockcolor" style="fill:#A6A69F;;overflow:visible;" data-st="fill:#A6A69F;;overflow:visible;"></use>
+	<clipPath id="57870612_SVGID_2__focus">
+		<use xlink:href="#57870612_SVGID_1__focus" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st2" style="clip-path:url(#57870612_SVGID_2__focus);;">
+		<polygon class="st6" points="44.856,50 19.144,50 23.763,58 40.237,58   " style="opacity:0.3;fill:#231F20;;"></polygon>
+	</g>
+</g>
+<g>
+	<defs>
+		<rect id="57870612_SVGID_3__focus" x="8" y="15" width="48" height="30"></rect>
+	</defs>
+	<use xlink:href="#57870612_SVGID_3__focus" style="overflow:visible;fill:#DEDCD9;"></use>
+	<clipPath id="57870612_SVGID_4__focus">
+		<use xlink:href="#57870612_SVGID_3__focus" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st3" style="clip-path:url(#57870612_SVGID_4__focus);;">
+		<polygon class="st0" points="32.906,50 4,50 4,10 56,10   " style="opacity:0.3;fill:#FFFFFF;;"></polygon>
+	</g>
+</g>
+<g>
+	<defs>
+		<path id="57870612_SVGID_5__focus" d="M60,15H4v-5h56V15z M60,45H4v5h56V45z"></path>
+	</defs>
+	<use xlink:href="#57870612_SVGID_5__focus" class="stshockcolor" style="fill:#A6A69F;;overflow:visible;" data-st="fill:#A6A69F;;overflow:visible;"></use>
+	<clipPath id="57870612_SVGID_6__focus">
+		<use xlink:href="#57870612_SVGID_5__focus" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st4" style="clip-path:url(#57870612_SVGID_6__focus);;">
+		<polygon class="st0" points="32.906,50 4,50 4,10 56,10   " style="opacity:0.3;fill:#FFFFFF;;"></polygon>
+	</g>
+</g>
+<g>
+	<defs>
+		<circle id="57870612_SVGID_7__focus" cx="32" cy="30" r="12"></circle>
+	</defs>
+	<use xlink:href="#57870612_SVGID_7__focus" style="overflow:visible;fill:#75A2D9;"></use>
+	<clipPath id="57870612_SVGID_8__focus">
+		<use xlink:href="#57870612_SVGID_7__focus" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st5" style="clip-path:url(#57870612_SVGID_8__focus);;">
+		<rect x="20" y="18" class="st0" width="24" height="24" style="opacity:0.3;fill:#FFFFFF;;"></rect>
+		<polygon class="st6" points="20,42 25.072,42 38.929,18 20,18   " style="opacity:0.3;fill:#231F20;;"></polygon>
+		<rect x="32" y="14" class="st1" width="16" height="16" style="fill:#EA7A2F;;"></rect>
+	</g>
+</g>
+</svg>

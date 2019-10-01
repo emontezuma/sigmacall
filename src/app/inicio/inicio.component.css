@@ -1,0 +1,190 @@
+.verTarjetas
+{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.verTarjetas > tarjeta
+{
+    align-content: center;
+}
+
+.tarjeta 
+{
+    margin: 5px;
+    width: 290px !important;
+    height: 320px !important;
+    border-color: #CCCCCC;
+    border-style: solid !important;
+    border-width: 3px !important;
+    border-radius: 4px 16px !important;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.tarjetaTabla 
+{
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly !important;
+}
+
+.tarjetaCabecera 
+{
+    font-size: 16px !important;
+    font-weight: 550;
+    color: #202020;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 1px !important;
+    margin-left: -15px !important;
+    width: 282px !important;
+    background-color: #858585;
+    border-style: none;
+    border-width: 3px !important;
+    border-radius: 0px 11px 0px 0px !important;
+    
+}
+
+.tarjetaTitulo 
+{
+    text-align: left !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    color: #101010;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 0px;
+    flex: 5;
+}
+
+.tarjetaTitulo1 
+{
+    text-align: left !important;
+    font-size: 16px !important;
+    font-weight: 450;
+    color: #CCCCCC;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 0px;
+    flex: 3;
+}
+
+.tarjetaDatos 
+{
+    font-size: 16px !important;
+    text-align: left !important;
+    font-weight: 500;
+    color: #303030; 
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    margin-top: -10px;
+    line-height: normal;
+}
+
+.tarjetaDatos2 
+{
+    margin-top: 10px !important;
+    font-size: 24px !important;
+    text-align: center !important;
+    font-weight: 500;
+    color: black; 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tarjetaDatos1 
+{
+    font-size: 20px !important;
+    text-align: left !important;
+    font-weight: 500;
+    color: white; 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: -16px;
+    flex: 3;
+}
+
+.tarjetaMensaje 
+{
+    font-size: 20px !important;
+    text-align: left !important;
+    font-weight: 500;
+    width: 160px !important;
+    
+    margin-left: -10px;
+    margin-top: -18px !important;
+    padding: 10px;
+    height: 100px !important;
+}
+
+
+.dobleLinea 
+{
+    font-size: 20px !important;
+    text-align: left !important;
+    font-weight: 500;
+    color: MediumSpringGreen;
+    overflow: hidden;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 22px;
+    max-height: 45px;
+    
+}
+
+.tarjetaCaja
+{
+    margin-bottom: -10px;
+    width: 232px !important;
+}
+
+.tarjetaCaja2
+{
+    margin-top: 10px;
+    width: 232px !important;
+}
+
+.tarjetaPie 
+{
+    font-size: 20px !important;
+    font-weight: 550;
+    color: #202020;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 292px !important;
+    background-color: #FFFFFF;
+    border-style: none;
+    border-width: 3px !important;
+    border-radius: 0px 0px 0px 11px !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.titulos
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.itemIcon
+{
+    flex: 1;
+    margin-top: 20px;
+    width: 96px;
+    height: 96px;
+}

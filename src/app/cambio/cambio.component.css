@@ -1,0 +1,250 @@
+.contenido 
+{
+    position: relative;
+    
+
+}
+
+.iconoDialogo {
+    text-align: left !important;
+    min-height: 32px;
+    min-width: 32px;
+    flex: 1;
+}
+
+.cabecera 
+{
+    margin-top: -10px !important;
+    width: 100% !important;
+    height: 32px !important; 
+    padding: 2px;
+    color: #202020 !important;
+    background-color: #EEEEEE; 
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: skyblue;
+}
+
+.tituloDialogo 
+{
+    flex: 15;
+    text-align: center;
+    margin: auto;
+}
+
+.titulo 
+{
+    padding: 2px;
+    font-size: 16px;
+    text-align: left !important;
+    color: #303030;
+    background-color: #EEEEEE;
+    width: 485px;
+    font-weight: 525;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: skyblue;
+}
+
+.tituloSiguiente 
+{
+    margin-top: 10px;
+    padding: 2px;
+    font-size: 16px;
+    text-align: left !important;
+    color: #303030;
+    background-color: #EEEEEE;
+    width: 485px;
+    font-weight: 525;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: skyblue;
+}
+
+.lista {
+    height: 250px  !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 16px !important;
+    color: #202020;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .seleccion {
+    height: 120px  !important;
+    font-size: 16px !important;
+    color: #202020;
+    background-color: red;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #909090;
+ }
+
+ .posicion 
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: -2px;
+}
+
+.pie 
+{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 40px !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.botonOtro
+{
+    font-size: 15px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin: 5px;
+    color: #303030;
+    min-width: 80px !important;
+}
+
+
+.botonNo 
+{
+    font-size: 15px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin: 5px;
+    color: #303030;
+    min-width: 80px !important;
+    background-color: rgba(255,0,0,0.2);
+}
+
+.botoncito
+{
+    font-size: 15px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin-top: 10px;
+    margin-left: 15px;
+    min-width: 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+
+}
+
+.botonLista
+{
+    height: 40px !important;
+    min-height: 40px !important;
+    font-size: 17px !important;
+    font-weight: 450;
+    min-height: 32px;
+    min-width: 265px;
+    width: 265px;
+    background-color: #EEEEEE;
+    margin: 5px;
+    color: #303030;
+}
+.botonSi
+{
+    font-size: 15px !important;
+    font-weight: 550;
+    min-height: 32px;
+    margin: 5px;
+    color: #202020;
+    min-width: 80px !important;
+    background-color: rgba(0,255,0,0.2);
+}
+
+.iconoBoton {
+    margin-top: -5px;
+    margin-left: -10px;
+    min-height: 24px;
+    min-width: 24px;
+}
+
+::ng-deep .texto { 
+    width: 245px !important;
+  }
+
+.etiqueta {
+    font-weight: 450;
+    font-size: 16px  !important;
+}
+
+.activarError {
+    padding: 2px;
+    font-size: 14px;
+    text-align: left !important;
+    color: tomato !important;
+    font-weight: 450;
+}
+
+
+::ng-deep .conError {
+    font-weight: 450;
+    font-size: 14px !important;
+    color: tomato !important;
+    margin-top: 3px;
+    text-align: right;
+    height: 15px;
+    
+}
+
+
+::ng-deep .mat-card{
+
+    border-radius: 0px !important;
+   }
+
+  
+  ::ng-deep .pista {
+    font-weight: 450;
+    font-size: 12px  !important;
+    margin-top: 3px;
+}
+
+::ng-deep .conError {
+    font-weight: 450;
+    font-size: 14px !important;
+    color: tomato !important;
+    margin-top: 3px;
+    text-align: right;
+    height: 15px;
+}
+
+.cajaEstatus2
+  {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    justify-content: space-between;
+    height: 20px !important;
+    min-height: 20px !important;
+    
+  } 
+
+  
+
+
+
+  .espacio 
+{
+    margin-top: 10px;
+    padding: 2px;
+    font-size: 14px;
+    text-align: left !important;
+    color: #303030;
+    font-weight: 450;
+    width: 285px;
+    
+}

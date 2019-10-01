@@ -1,0 +1,33 @@
+<div class="verTarjetas" *ngIf="verTotal">
+  <div class="equipoCabecera" *ngIf="isHandset"></div> 
+  
+  <div class="tarjetaTabla" *ngFor="let registro of registros; let i = index">
+     <button class="tarjeta" [style.backgroundColor]="(registro.id==0 ? 'white' : '#AAAAAA')" mat-button (click)="accion(i)" >
+        <div class="tarjetaCabecera" *ngIf="registro.id!=0">{{ registro.titulo }}</div>
+        <mat-icon class="itemIcon" svgIcon="{{ registro.icono }}" *ngIf="registro.id==0"></mat-icon>
+        <div class="tarjetaCaja" *ngIf="registro.id==0">
+            <div class="tarjetaDatos2">NUEVO CHECKLIST</div>
+        </div>
+        <div *ngIf="registro.id!=0">
+          <mat-icon class="itemIcon" svgIcon="{{ registro.icono }}"></mat-icon>
+          <div class="tarjetaCaja">
+            <div class="titulos">
+                <div class="tarjetaTitulo">Descripción</div>
+            </div>
+            <div class="titulos"> 
+              <div class="tarjetaDatos">{{ registro.descripcion }}</div>
+            </div>
+          </div>
+          <div class="tarjetaCaja2">
+            <div class="titulos">
+                <div class="tarjetaTitulo">Próxima revisión</div>
+            </div>
+            <div class="titulos"> 
+              <div class="tarjetaDatos">{{ registro.fecha }}</div>
+            </div>
+          </div>
+
+        </div>
+    </button>
+  </div>
+</div>  

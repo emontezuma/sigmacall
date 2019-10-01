@@ -1,0 +1,55 @@
+<div class="contenido" class="mat-typography">
+  <div class="cabecera">
+    <mat-icon class="iconoDialogo" svgIcon="cambioClave"></mat-icon>
+    <p class="tituloDialogo"><strong>Cambio de contraseña</strong></p>
+  </div>
+
+<mat-card class="posicion">
+  <mat-card-content >
+    <form novalidate="" #forma="ngForm">
+    <div class ="lista">
+        <mat-form-field class="texto" *ngIf="cambiando">
+          <mat-label class="etiqueta">Contraseña actual</mat-label>
+          <input matInput #txtActual [type]="vermiClave[0] ? 'text' : 'password'"  placeholder="Contraseña actual" [(ngModel)]="clave_actual" maxlength="30" autocomplete="off" name="clave_actual" #clave_actualN="ngModel" required>
+          <button matSuffix mat-icon-button (click)="verClave(0)">
+            <mat-icon [svgIcon]="imagenVer[0]"></mat-icon>
+          </button>
+          <mat-hint class="pista" align="start">{{ errorPassword2 }}</mat-hint>
+          <mat-hint class="pista" align="end">{{clave_actualN.value?.length || 0}} de 30</mat-hint>
+        </mat-form-field>
+        <div class="espacio" *ngIf="!cambiando">Se ha solicitad la inicialización de su contraeña. Sirvase a establecer una nueva contraseña para acceder a esta aplicación.</div>
+                      
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Contraseña nueva</mat-label>
+          <input matInput #txtNueva [type]="vermiClave[1] ? 'text' : 'password'" placeholder="Contraseña nueva" [(ngModel)]="nueva_clave" maxlength="30" autocomplete="off" name="nueva_clave" #nueva_claveN="ngModel" required>
+          <button matSuffix mat-icon-button (click)="verClave(1)">
+            <mat-icon [svgIcon]="imagenVer[1]"></mat-icon>
+          </button>
+          <mat-hint ngClass="pista" align="start">{{ errorPassword }}</mat-hint>
+          <mat-hint class="pista" align="end">{{nueva_claveN.value?.length || 0}} de 30</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Confirmación</mat-label>
+          <input matInput #txtConfirmacion [type]="vermiClave[2] ? 'text' : 'password'" placeholder="Confirmación" [(ngModel)]="confirmacion" maxlength="30" autocomplete="off" name="confirmacion" #confirmacionN="ngModel" required>
+          <button matSuffix mat-icon-button (click)="verClave(2)">
+            <mat-icon [svgIcon]="imagenVer[2]"></mat-icon>
+          </button>
+          <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+          <mat-hint class="pista" align="end">{{confirmacionN.value?.length || 0}} de 30</mat-hint>
+        </mat-form-field>
+    </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<div class="pie">
+  <button class="botonOtro" mat-raised-button (click) = "validar()">
+    <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+    Aceptar
+  </button>
+  <button class="botonNo" mat-raised-button (click) = "cancelar()">
+    <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+    Cancelar
+  </button>
+</div>
+</div>

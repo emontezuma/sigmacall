@@ -1,0 +1,519 @@
+<div class="contenido" class="mat-typography">
+    <div class="cabecera">
+      <mat-icon class="iconoDialogo" svgIcon="alerta"></mat-icon>
+      <p class="tituloDialogo"><strong>Mantenimiento de Alertas</strong> {{ registroActual }}</p>
+    </div>
+
+
+<mat-card class="posicion">
+    <mat-card-content >
+      <form novalidate="" #forma="ngForm">
+      <div class ="lista">
+        <div class="titulo">(1) Datos generales de la alerta</div>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Nombre de la alerta</mat-label>
+          <input matInput #txtR placeholder="Alerta" [(ngModel)]="nombre" maxlength="60" autocomplete="off" name="nombre" required #nombreN="ngModel" (input)="cambiando($event)">
+          <mat-hint class="pista" align="end">{{nombreN.value?.length || 0}} de 60</mat-hint>
+          <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="textoS">
+            <mat-label class="etiqueta">Notas (opcional)</mat-label>
+            <textarea matInput [(ngModel)]="notas" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="2" placeholder="Notas adicionales" maxlength="100" name="notas" #notasN="ngModel" (input)="cambiando($event)" ></textarea>
+            <mat-hint class="pista" align="start">Campo opcional</mat-hint>
+            <mat-hint class="pista" align="end">{{notasN.value?.length || 0}} de 100</mat-hint>
+          </mat-form-field>
+        <div class="caja">
+          <mat-form-field class="caja1">
+            <mat-label class="etiqueta">Referencia (sistemas)</mat-label>
+            <input matInput #txtRef placeholder="Referencia" [(ngModel)]="referencia" maxlength="50" autocomplete="off" name="referencia" #referenciaN="ngModel" (input)="cambiando($event)">
+            <mat-hint class="pista" align="end">{{referenciaN.value?.length || 0}} de 50</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="caja2">
+            <mat-label class="etiqueta">Prioridad</mat-label>
+            <mat-select [(value)]="miPrioridad" (selectionChange)=cambiando($event)>
+              <mat-option value="1">Alta</mat-option>
+              <mat-option value="2">Media</mat-option>
+              <mat-option value="3">Baja</mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda02" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="caja">
+          <mat-form-field class="caja1">
+            <mat-label class="etiqueta">Clase de alerta</mat-label>
+            <mat-select [(value)]="miTipo" (selectionChange)=cambiando($event) #aplicacion>
+              <mat-option value="1">Lista de fallas (específica)</mat-option>
+              <mat-option value="2">Escape</mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda01" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          <mat-form-field class="caja2">
+            <mat-label class="etiqueta">Estación (escape)</mat-label>
+            <mat-select [(value)]="miEstacionEscape" #equipos [disabled]="aplicacion.value=='1'" (selectionChange)=cambiando($event)>
+              <mat-option *ngFor="let estacionesc of estaciones" [(value)]="estacionesc.ESTACION">{{ estacionesc.ESTACION }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="solapar" name="solapar" color="warn">Generar la alerta estando activa una previa (solapar)</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="informar" name="informar" color="warn">Informar el cierre de la alerta a los involucrados</mat-checkbox>                
+        </div>
+          
+        <div class="tituloSiguiente">Lista de fallas asociadas</div>
+        <div class="espacio">Especifique las fallas por asignación directa o por algún comodín. Las fallas se compararán por el valor de su descripción larga.</div>
+        <div class="caja">
+            <mat-form-field class="caja31">
+              <mat-label class="etiqueta">Comparación</mat-label>
+              <mat-select [(value)]="miComparacion" [disabled]="aplicacion.value=='2'" #comparacion>
+                <mat-option value="1">Igual a</mat-option>
+                <mat-option value="2">Diferente a</mat-option>
+                <mat-option value="3">Que empiece con</mat-option>
+                <mat-option value="4">Que no empiece con</mat-option>
+                <mat-option value="5">Que contenga</mat-option>
+                <mat-option value="6">Que no contenga</mat-option>
+                <mat-option value="7">Que termine en</mat-option>
+                <mat-option value="8">Que no termine en</mat-option>
+                <mat-option value="9">Mayor que</mat-option>
+                <mat-option value="10">Mayor o igual que</mat-option>
+                <mat-option value="11">Menor que</mat-option>
+                <mat-option value="12">Menor o igual que</mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field class="caja32">
+              <mat-label class="etiqueta">Comodin (Descripción)</mat-label>
+              <input matInput #txtCadenaComp [disabled]="aplicacion.value=='2'" placeholder="Comodín a comparar" [(ngModel)]="cadenaComp" maxlength="200" autocomplete="off" name="cadenaComp" required #cadenaCompN="ngModel">
+            <mat-hint class="pista" align="end">{{cadenaCompN.value?.length || 0}} de 50</mat-hint>
+            </mat-form-field>
+  
+            <mat-form-field class="caja33">
+              <mat-label class="etiqueta" >Estación</mat-label>
+              <mat-select [(value)]="miEstacion" [disabled]="aplicacion.value=='2'" #equipos>
+                <mat-option *ngFor="let estacion of estaciones" [(value)]="estacion.ESTACION">{{ estacion.ESTACION }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+              
+            <button class="botoncito" [disabled]="!txtCadenaComp.value || aplicacion.value=='2'" mat-raised-button (click) = "agregarFalla()">
+                <mat-icon class="iconoBotoncitoSolo" svgIcon="mas"></mat-icon>
+            </button>
+          </div>
+        <div class="cajaTabla">          
+          <table mat-table [dataSource]="listaFallas">
+            <!-- Item Column -->
+            <ng-container matColumnDef="comparacion">
+              <th mat-header-cell *matHeaderCellDef> Comparación </th>
+              <td mat-cell *matCellDef="let listaFallas"> {{ listaFallas.comparacion }} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="prefijo">
+              <th mat-header-cell *matHeaderCellDef> Descripción </th>
+              <td mat-cell *matCellDef="let listaFallas"> {{ listaFallas.prefijo }} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="estacion">
+              <th mat-header-cell *matHeaderCellDef>Estación</th>
+              <td mat-cell *matCellDef="let listaFallas"> {{ listaFallas.estacion }} </td>
+            </ng-container>
+            <ng-container matColumnDef="estatus">
+              <th mat-header-cell *matHeaderCellDef> Estatus </th>
+              <td mat-cell *matCellDef="let listaFallas" [style.color]="(listaFallas.estatus=='Activo' ? 'black' : 'tomato')"> {{ listaFallas.estatus }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="iconos" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td mat-cell *matCellDef="let listaFallas; let i = index">
+                <mat-icon class="iconoBotoncito" svgIcon="{{ listaFallas.iconos }}" [matTooltip] = "ayuda11" matTooltipShowDelay = "100" (click)="inactivar(i)"> </mat-icon>
+                <mat-icon class="iconoBotoncito" svgIcon="eliminar" [matTooltip] = "ayuda12" matTooltipShowDelay = "100" (click)="eliminar(i)"></mat-icon>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="columnasTabla; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnasTabla;"></tr>
+          </table>
+        </div>
+        
+        <div class="tituloSiguiente">(2) Generar la alerta por frecuencia de fallas</div>
+        <div class="caja">
+          <mat-form-field class="caja3">
+            <mat-label class="etiqueta">Acumular fallas</mat-label>
+            <mat-select [(value)]="miAcumular" (selectionChange)=cambiando($event) #acumulador>
+              <mat-option value="N">No</mat-option>
+              <mat-option value="S">Si</mat-option>
+            </mat-select>
+            <mat-hint class="pista" align="start">Alerta por falla</mat-hint>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda03" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field class="caja4">
+            <mat-label class="etiqueta">Frecuencia de fallas</mat-label>
+            <input matInput #txtHits placeholder="Frecuencia" type="number" min="1" max="1000000" [(ngModel)]="veces" maxlength="6" autocomplete="off" name="veces" required #vecesN="ngModel" (input)="cambiando($event)" [disabled]="acumulador.value=='N'">
+            <mat-hint class="pista" align="start">Frecuencia: 1-999999</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="caja4">
+            <mat-label class="etiqueta">Lapso de espera</mat-label>
+            <input matInput #txtTiempo placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempo" maxlength="8" autocomplete="off" name="tiempo" required #tiempoN="ngModel" (input)="cambiando($event)" [disabled]="acumulador.value=='N'">
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+        </div>
+          
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Mensaje a enviar para fallas acumuladas</mat-label>
+          <mat-select [(value)]="miMensaje" (selectionChange)=cambiando($event) #mensajeAcum [disabled]="acumulador.value=='N'">
+            <mat-option value="T">Un mensaje con el número total de fallas acumuladas</mat-option>
+            <mat-option value="1">Un mensaje con la descripción de la última falla</mat-option>
+            <mat-option value="P">Un mensaje personalizado</mat-option>
+          </mat-select>
+          <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda06" matTooltipShowDelay = "100"></mat-icon>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Mensaje personalizado (para SMS, Llamada, correo y MMCall)</mat-label>
+          <textarea matInput #mPersonalizado cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="2" placeholder="Mensaje personalizado" [(ngModel)]="personalizado" maxlength="200" name="personalizado" #personalizadoN="ngModel" (input)="cambiando($event)" [disabled]="mensajeAcum.value!='P' || acumulador.value=='N'" [required]="Requerido01"></textarea>
+          <mat-hint class="pista" align="start">Este mensaje no se traducirá y podría truncarse en SMS y/o MMCall</mat-hint>
+          <mat-hint class="pista" align="end">{{personalizadoN.value?.length || 0}} de 200</mat-hint>
+        </mat-form-field>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="reiniciar" name="reiniciar" color="warn" [disabled]="acumulador.value=='N'">Reiniciar el acumulador cuando se alcance la frecuencia </mat-checkbox>                
+        </div>
+        
+        <div class="tituloSiguiente">(3) Primer nivel de la alerta</div>
+        <div class="cajaEstatus">
+          <mat-checkbox  #miLog1 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="log1" name="log1" color="warn">Generar histórico (log)</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="sms1" name="sms1" color="warn">Enviar SMS</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="llamada1" name="llamada1" color="warn">Generar una llamada telefónica</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correo1" name="correo1" color="warn">Enviar un correo electrónico</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mmcall1" name="mmcall1" color="warn">Enviar un mensaje a MMCall</mat-checkbox>                
+        </div>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Recipiente asociado a este nivel</mat-label>
+          <mat-select [(value)]="miLista0" #lista0 [disabled]="!sms1 && !llamada1 && !correo1 && !mmcall1" (selectionChange)=cambiando($event)>
+            <mat-option *ngFor="let lista of listas" [(value)]="lista.id">{{ lista.cadena }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="tituloSiguiente">(4) Repetición de la alerta en el primer nivel</div>
+        <div class="caja">
+          <mat-form-field class="caja11">
+            <mat-label class="etiqueta">Repetir la alerta</mat-label>
+            <mat-select [(value)]="miRepetir" #repetir (selectionChange)=cambiando($event)>
+              <mat-option value="N">No repetir</mat-option>
+              <mat-option value="S">Repetir hasta que se escale</mat-option>
+              <mat-option value="T">Repetir hasta que se termine</mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda04" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field class="caja12">
+            <mat-label class="etiqueta">Lapso de espera</mat-label>
+            <input matInput #txtTiemporep placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiemporep" maxlength="8" autocomplete="off" name="tiemporep" #tiemporepN="ngModel" (input)="cambiando($event)" (input)="calculoSeg(2)" [disabled]="repetir.value=='N'">
+            <span class="gris" matSuffix>{{ segundosrepHR }}</span>
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox #miLog1rep class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="log1rep" name="log1rep" color="warn" [disabled]="repetir.value=='N'">Generar histórico (log)</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="sms1rep" name="sms1rep" color="warn" [disabled]="repetir.value=='N'">Enviar SMS</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="llamada1rep" name="llamada1rep" color="warn" [disabled]="repetir.value=='N'">Generar una llamada telefónica</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correo1rep" name="correo1rep" color="warn" [disabled]="repetir.value=='N'">Enviar un correo electrónico</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mmcall1rep" name="mmcall1rep" color="warn" [disabled]="repetir.value=='N'">Enviar un mensaje a MMCall</mat-checkbox>                
+        </div>
+
+        <div class="tituloSiguiente">(5) Escalar la alerta (PRIMER ESCALAMIENTO)</div>
+        <div class="caja">
+          <mat-form-field class="caja11">
+            <mat-label class="etiqueta">Forma de escalamiento (primero)</mat-label>
+            <mat-select [(value)]="miRepetirEs1" (selectionChange)=cambiando($event) #repetiresc1>
+              <mat-option value="N">No escalar</mat-option>
+              <mat-option value="S">Escalar sin notificar</mat-option>
+              <mat-option value="T">Escalar y notificar niveles previos</mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda05" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field class="caja12">
+            <mat-label class="etiqueta">Lapso de espera</mat-label>
+            <input matInput #txtTiempoesc1 placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempoesc1" maxlength="8" autocomplete="off" name="tiempoesc1" #tiempoesc1N="ngModel" (input)="cambiando($event)" (input)="calculoSeg(3)" [disabled]="repetiresc1.value=='N'">
+            <span class="gris" matSuffix>{{ segundosesc1HR }}</span>
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="cajaEstatus">
+            <mat-checkbox #miLogesc1 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="repetir1" name="repetir1" color="primary" [disabled]="repetiresc1.value=='N'">Repetir el escalamiento hasta que se termine la alerta</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox #miLogesc1 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="logesc1" name="logesc1" color="warn" [disabled]="repetiresc1.value=='N'">Generar histórico (log)</mat-checkbox>                
+        </div>
+            
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="smsesc1" name="smsesc1" color="warn" [disabled]="repetiresc1.value=='N'">Enviar SMS</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="llamadaesc1" name="llamadaesc1" color="warn" [disabled]="repetiresc1.value=='N'">Generar una llamada telefónica</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correoesc1" name="correoesc1" color="warn" [disabled]="repetiresc1.value=='N'">Enviar un correo electrónico</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mmcallesc1" name="mmcallesc1" color="warn"[disabled]="repetiresc1.value=='N'">Enviar un mensaje a MMCall</mat-checkbox>                
+        </div>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Recipiente asociado a este nivel</mat-label>
+          <mat-select [(value)]="miLista1" #lista1 [disabled]="repetiresc1.value=='N' || (!smsesc1 && !llamadaesc1 && !correoesc1 && !mmcallesc1)" (selectionChange)=cambiando($event)>
+            <mat-option *ngFor="let lista of listas" [(value)]="lista.id">{{ lista.cadena }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="tituloSiguiente">(6) Escalar la alerta (SEGUNDO ESCALAMIENTO)</div>
+        <div class="activarError" *ngIf="repetiresc1.value=='N'">Active escalamiento anterior para configurar éste</div>
+        <div class="caja">
+          <mat-form-field class="caja11">
+            <mat-label class="etiqueta">Forma de escalamiento (segundo)</mat-label>
+            <mat-select [(value)]="miRepetirEs2" (selectionChange)=cambiando($event) #repetiresc2>
+              <mat-option value="N">No escalar</mat-option>
+              <mat-option value="S">Escalar sin notificar</mat-option>
+              <mat-option value="T">Escalar y notificar niveles previos</mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda05" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field class="caja12">
+            <mat-label class="etiqueta">Lapso de espera</mat-label>
+            <input matInput #txtTiempoesc2 placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempoesc2" maxlength="8" autocomplete="off" name="tiempoesc2" #tiempoesc2N="ngModel" (input)="cambiando($event)" (input)="calculoSeg(4)" [disabled]="repetiresc1.value=='N' || repetiresc2.value=='N'">
+            <span class="gris" matSuffix>{{ segundosesc2HR }}</span>
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="cajaEstatus">
+            <mat-checkbox #miLogesc1 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="repetir2" name="repetir2" color="primary" [disabled]="repetiresc1.value=='N'">Repetir el escalamiento hasta que se termine la alerta</mat-checkbox>                
+        </div>
+        
+        <div class="cajaEstatus">
+          <mat-checkbox #miLogesc2 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="logesc2" name="logesc2" color="warn" [disabled]="repetiresc1.value=='N' || repetiresc2.value=='N'">Generar histórico (log)</mat-checkbox>                
+        </div>
+          
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="smsesc2" name="smsesc2" color="warn" [disabled]="repetiresc1.value=='N' || repetiresc2.value=='N'">Enviar SMS</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="llamadaesc2" name="llamadaesc2" color="warn" [disabled]="repetiresc1.value=='N' || repetiresc2.value=='N'">Generar una llamada telefónica</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correoesc2" name="correoesc2" color="warn" [disabled]="repetiresc1.value=='N' || repetiresc2.value=='N'">Enviar un correo electrónico</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mmcallesc2" name="mmcallesc2" color="warn"[disabled]="repetiresc1.value=='N' || repetiresc2.value=='N'">Enviar un mensaje a MMCall</mat-checkbox>                
+        </div>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Recipiente asociado a este nivel</mat-label>
+          <mat-select [(value)]="miLista2" #lista2 [disabled]="repetiresc1.value=='N' || repetiresc2.value=='N' || (!smsesc2 && !llamadaesc2 && !correoesc2 && !mmcallesc2)" (selectionChange)=cambiando($event)>
+            <mat-option *ngFor="let lista of listas" [(value)]="lista.id">{{ lista.cadena }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="tituloSiguiente">(7) Escalar la alerta (TERCER ESCALAMIENTO)</div>
+        <div class="activarError" *ngIf="repetiresc2.value=='N' || repetiresc2.disabled">Active escalamiento anterior para configurar éste</div>
+        <div class="caja">
+          <mat-form-field class="caja11">
+            <mat-label class="etiqueta">Forma de escalamiento (tercero)</mat-label>
+            <mat-select [(value)]="miRepetirEs3" (selectionChange)=cambiando($event) #repetiresc3>
+              <mat-option value="N">No escalar</mat-option>
+              <mat-option value="S">Escalar sin notificar</mat-option>
+              <mat-option value="T">Escalar y notificar niveles previos</mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda05" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field class="caja12">
+            <mat-label class="etiqueta">Lapso de espera</mat-label>
+            <input matInput #txtTiempoesc3 placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempoesc3" maxlength="8" autocomplete="off" name="tiempoesc3" #tiempoesc3N="ngModel" (input)="cambiando($event)" (input)="calculoSeg(5)" [disabled]="repetiresc2.value=='N' || repetiresc3.value=='N' || repetiresc2.disabled">
+            <span class="gris" matSuffix>{{ segundosesc3HR }}</span>
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="cajaEstatus">
+            <mat-checkbox #miLogesc1 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="repetir3" name="repetir3" color="primary" [disabled]="repetiresc1.value=='N'">Repetir el escalamiento hasta que se termine la alerta</mat-checkbox>                
+        </div>
+    
+        <div class="cajaEstatus">
+          <mat-checkbox #miLogesc3 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="logesc3" name="logesc3" color="warn" [disabled]="repetiresc2.value=='N' || repetiresc3.value=='N' || repetiresc2.disabled">Generar histórico (log)</mat-checkbox>                
+        </div>
+          
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="smsesc3" name="smsesc3" color="warn" [disabled]="repetiresc2.value=='N' || repetiresc3.value=='N' || repetiresc2.disabled">Enviar SMS</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="llamadaesc3" name="llamadaesc3" color="warn" [disabled]="repetiresc2.value=='N' || repetiresc3.value=='N' || repetiresc2.disabled">Generar una llamada telefónica</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correoesc3" name="correoesc3" color="warn" [disabled]="repetiresc2.value=='N' || repetiresc3.value=='N' || repetiresc2.disabled">Enviar un correo electrónico</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mmcallesc3" name="mmcallesc3" color="warn"[disabled]="repetiresc2.value=='N' || repetiresc3.value=='N' || repetiresc2.disabled">Enviar un mensaje a MMCall</mat-checkbox>                
+        </div>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Recipiente asociado a este nivel</mat-label>
+          <mat-select [(value)]="miLista3" #lista3 [disabled]="repetiresc2.value=='N' || repetiresc3.value=='N' || repetiresc2.disabled || (!smsesc3 && !llamadaesc3 && !correoesc3 && !mmcallesc3)" (selectionChange)=cambiando($event)>
+            <mat-option *ngFor="let lista of listas" [(value)]="lista.id">{{ lista.cadena }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <div class="tituloSiguiente">(8) Escalar la alerta (CUARTO ESCALAMIENTO)</div>
+        <div class="activarError" *ngIf="repetiresc3.value=='N' || repetiresc3.disabled">Active escalamiento anterior para configurar éste</div>
+        <div class="caja">
+          <mat-form-field class="caja11">
+          <mat-label class="etiqueta">Forma de escalamiento (cuarto)</mat-label>
+          <mat-select [(value)]="miRepetirEs4" (selectionChange)=cambiando($event) #repetiresc4>
+            <mat-option value="N">No escalar</mat-option>
+            <mat-option value="S">Escalar sin notificar</mat-option>
+            <mat-option value="T">Escalar y notificar niveles previos</mat-option>
+          </mat-select>
+          <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda05" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field class="caja12">
+            <mat-label class="etiqueta">Lapso de espera</mat-label>
+            <input matInput #txtTiempoesc4 placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempoesc4" maxlength="8" autocomplete="off" name="tiempoesc4" #tiempoesc4N="ngModel" (input)="cambiando($event)" (input)="calculoSeg(6)" [disabled]="repetiresc3.value=='N' || repetiresc4.value=='N' || repetiresc3.disabled">
+            <span class="gris" matSuffix>{{ segundosesc4HR }}</span>
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="cajaEstatus">
+            <mat-checkbox #miLogesc1 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="repetir4" name="repetir4" color="primary" [disabled]="repetiresc1.value=='N'">Repetir el escalamiento hasta que se termine la alerta</mat-checkbox>                
+        </div>
+    
+        <div class="cajaEstatus">
+          <mat-checkbox #miLogesc4 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="logesc4" name="logesc4" color="warn" [disabled]="repetiresc3.value=='N' || repetiresc4.value=='N' || repetiresc3.disabled">Generar histórico (log)</mat-checkbox>                
+        </div>
+          
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="smsesc4" name="smsesc4" color="warn" [disabled]="repetiresc3.value=='N' || repetiresc4.value=='N' || repetiresc3.disabled">Enviar SMS</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="llamadaesc4" name="llamadaesc4" color="warn" [disabled]="repetiresc3.value=='N' || repetiresc4.value=='N' || repetiresc3.disabled">Generar una llamada telefónica</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correoesc4" name="correoesc4" color="warn" [disabled]="repetiresc3.value=='N' || repetiresc4.value=='N' || repetiresc3.disabled">Enviar un correo electrónico</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mmcallesc4" name="mmcallesc4" color="warn"[disabled]="repetiresc3.value=='N' || repetiresc4.value=='N' || repetiresc3.disabled">Enviar un mensaje a MMCall</mat-checkbox>                
+        </div>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Recipiente asociado a este nivel</mat-label>
+          <mat-select [(value)]="miLista4" #lista4 [disabled]="repetiresc3.value=='N' || repetiresc4.value=='N' || repetiresc3.disabled || (!smsesc4 && !llamadaesc4 && !correoesc4 && !mmcallesc4)" (selectionChange)=cambiando($event)>
+            <mat-option *ngFor="let lista of listas" [(value)]="lista.id">{{ lista.cadena }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="tituloSiguiente">(9) Escalar la alerta (QUNTO ESCALAMIENTO)</div>
+        <div class="activarError" *ngIf="repetiresc4.value=='N' || repetiresc4.disabled">Active escalamiento anterior para configurar éste</div>
+        <div class="caja">
+          <mat-form-field class="caja11">
+            <mat-label class="etiqueta">Forma de escalamiento (quinto)</mat-label>
+            <mat-select [(value)]="miRepetirEs5" (selectionChange)=cambiando($event) #repetiresc5>
+              <mat-option value="N">No escalar</mat-option>
+              <mat-option value="S">Escalar sin notificar</mat-option>
+              <mat-option value="T">Escalar y notificar niveles previos</mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda05" matTooltipShowDelay = "100"></mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field class="caja12">
+            <mat-label class="etiqueta">Lapso de espera</mat-label>
+            <input matInput #txtTiempoesc5 placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempoesc5" maxlength="8" autocomplete="off" name="tiempoesc5" #tiempoesc5N="ngModel" (input)="cambiando($event)" (input)="calculoSeg(7)" [disabled]="repetiresc4.value=='N' || repetiresc5.value=='N' || repetiresc4.disabled">
+            <span class="gris" matSuffix>{{ segundosesc5HR }}</span>
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="cajaEstatus">
+            <mat-checkbox #miLogesc1 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="repetir5" name="repetir5" color="primary" [disabled]="repetiresc1.value=='N'">Repetir el escalamiento hasta que se termine la alerta</mat-checkbox>                
+        </div>
+    
+        <div class="cajaEstatus">
+          <mat-checkbox #miLogesc5 class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="logesc5" name="logesc5" color="warn" [disabled]="repetiresc4.value=='N' || repetiresc5.value=='N' || repetiresc4.disabled">Generar histórico (log)</mat-checkbox>                
+        </div>
+          
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="smsesc5" name="smsesc5" color="warn" [disabled]="repetiresc4.value=='N' || repetiresc5.value=='N' || repetiresc4.disabled">Enviar SMS</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="llamadaesc5" name="llamadaesc5" color="warn" [disabled]="repetiresc4.value=='N' || repetiresc5.value=='N' || repetiresc4.disabled">Generar una llamada telefónica</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correoesc5" name="correoesc5" color="warn" [disabled]="repetiresc4.value=='N' || repetiresc5.value=='N' || repetiresc4.disabled">Enviar un correo electrónico</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mmcallesc5" name="mmcallesc5" color="warn"[disabled]="repetiresc4.value=='N' || repetiresc5.value=='N' || repetiresc4.disabled">Enviar un mensaje a MMCall</mat-checkbox>                
+        </div>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Recipiente asociado a este nivel</mat-label>
+          <mat-select [(value)]="miLista5" #lista5 [disabled]="repetiresc4.value=='N' || repetiresc5.value=='N' || repetiresc4.disabled || (!smsesc5 && !llamadaesc5 && !correoesc5 && !mmcallesc5)" (selectionChange)=cambiando($event)>
+            <mat-option *ngFor="let lista of listas" [(value)]="lista.id">{{ lista.cadena }}  </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        
+      </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div class="cajaEstatus2">
+    <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="estatus" color="warn">  Registro activo</mat-checkbox>                
+    <p class="conError" *ngIf="accionado">El registro no se ha guardado</p>
+  </div> 
+  <div class="historia">
+    <div class="dosDatos60">
+      <div class="tituloH">Creado por</div>
+      <div class="valorH">{{ uCreacion }}</div>
+      <div class="tituloH">Modificado por</div>         
+      <div class="valorH">{{ uCambio }}</div>         
+    </div>
+    <div class="dosDatos40">
+      <div class="tituloH">Fecha/Hora</div>
+      <div class="valorH">{{ fCreacion | date:'EEE, dd-MMM-yyyy HH:mm:ss'}}</div>
+      <div class="tituloH">Fecha/Hora</div>                  
+      <div class="valorH">{{ fCambio | date:'EEE, dd-MMM-yyyy HH:mm:ss' }}</div>
+    </div>
+    
+  </div>
+
+  <div class="pie">
+    <button class="botonOtro" mat-raised-button (click) = "nuevo()">
+      <mat-icon class="iconoBoton" svgIcon="nuevo"></mat-icon>
+      Nuevo
+    </button>
+    <button class="botonSi" [disabled]="!accionado" mat-raised-button (click) = "validar()">
+      <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+      Guardar
+    </button>
+    <button class="botonOtro" [disabled]="accionado || !encontrado" mat-raised-button (click) = "copiar()">
+      <mat-icon class="iconoBoton" svgIcon="copiar"></mat-icon>
+      Copiar
+    </button>
+    <button class="botonOtro" [disabled]="accionado || !encontrado" mat-raised-button (click) = "eliminarAlerta()">
+      <mat-icon class="iconoBoton" svgIcon="eliminar"></mat-icon>
+      Eliminar
+    </button>
+    <button class="botonNo" mat-raised-button (click) = "cancelar()">
+      <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+      {{ textoSalir }}
+    </button>
+  </div>
+</div>

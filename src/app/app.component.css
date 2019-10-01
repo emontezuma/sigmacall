@@ -1,0 +1,656 @@
+#todo {
+    position: relative;
+    width: 100%;    
+    min-height: 100%;
+    background-color:rgb(250, 183, 2);
+}
+
+.scrolear
+{
+    overflow: auto;
+    height: 100%;
+}
+
+.appFecha
+{
+    align-content: center;
+    display: flex;
+}
+
+.appUser
+{
+    align-content: center;
+    display: flex;
+    background-color: #454545;
+    border-radius: 4px 4px !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #505050;
+    padding: 2px;
+}
+
+.relojIcono
+{
+    width: 20px !important;
+    height: 20px !important;
+    margin-top: -17px !important;
+
+}
+
+.relojIcono2
+{
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.relojTitulo2
+{
+    font-size: 16px;
+    color: white !important;
+    height: 24px;
+    margin-top: -5px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.relojTitulo3
+{
+    font-size: 17px;
+    margin-right: 10px !important;
+    color: #808080 !important;
+    height: 24px;
+}
+
+.relojTitulo
+{
+    font-size: 15px;
+    color: white !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+    margin-top: -20px !important;
+}
+
+.appTitulo
+{
+    font-size: 20px;
+    font-weight: 200;
+    color: rgb(250, 183, 2);
+    margin-left: 5px;
+    margin-top: -8px !important;
+}
+
+.appVersion
+{
+    font-size: 15px;
+    color: #FFFFFF !important;
+    font-weight: 500;
+    margin-left: -69px !important;
+    margin-top: 25px !important;
+    
+}
+.appIcon
+{
+    font-size: 30px !important;
+    color: white !important;
+    margin-top: -8px !important;
+    margin-left: 5px !important;
+}
+
+.appContenedor
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#barraNavegacion 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 50px;
+    min-height: 50px !important;
+    background-color: #353535;
+}
+
+.imageContainer
+{
+  width: 240px;
+  height: 50px;
+  overflow: hidden;
+  padding: 10px;
+  margin-top: 10px;
+  align-content: center;
+  flex: 1 1 auto;
+  text-align: center;
+    
+}
+
+.soloLogo
+{
+  width: 40px;
+  height: 40px;
+  flex: 1;
+  text-align: left;
+  justify-content: flex-start;  
+  margin-top: -20PX;
+}
+
+
+.miLogo 
+
+{
+    width: 160px;
+    height: 40px;
+}
+
+.miLogo2 
+{
+    width: 40px;
+    height: 40px;
+}
+
+.logoCronos 
+{
+    width: 220px !important;
+    height: 45px !important;
+    top: 0;
+    left: 0;
+    -ms-transform: skewX(40deg); /* IE 9 */
+    -webkit-transform: skewX(40deg); /* Safari */
+    transform: skewX(40deg);
+    margin-top: 7px !important;
+}
+
+.botonCronos 
+{
+  margin-top: -25px !important;
+  height: 50px !important;
+    background-color: rgb(250, 183, 2) !important;
+    -ms-transform: skew(-40deg); /* IE 9 */
+    -webkit-transform: skew(-40deg); /* Safari */
+    transform: skew(-40deg);
+}
+
+.botonescl 
+{
+    font-size: 17px;
+    padding-left: 1px;
+    padding-right: 3px;
+    margin-left: 5px;
+}
+
+.botonescl2 
+  {
+      font-size: 17px;
+      padding-left: 1px;
+      padding-right: 3px;
+      margin-left: 5px;
+      max-width: 400px !important;
+      width: 400px !important;
+  }
+
+.iconoHamburguesa
+  {
+    padding: 0px !important;
+    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .iconoMail
+{
+    padding: 0px !important;
+    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: -5px !important;
+  }
+
+  .app
+  {
+      color: white;
+      height: 36px !important;
+    }
+
+  .iconos 
+{
+    padding: 0 5px;
+    cursor: pointer;
+    min-width: 30px !important;
+    width: 36px !important;
+    height: 36px !important;
+    color: #035AA1;
+  }
+
+
+  .iconoEstado 
+{
+    width: 24px !important;
+    height: 24px !important;
+    margin: auto;
+  }
+
+
+.botonHamburguesa 
+{
+    min-width: 40px !important;
+    width: 40px;
+    padding: 0;
+    background-color: #CCCCCC;
+    margin: 0px;
+    cursor: pointer !important;
+    margin-left: 5px;
+
+}
+
+.botonConfig 
+{
+    min-width: 50px !important;
+    padding: 0;
+    margin-left: 5px;
+    background-color: white;
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+  color: white;
+  font-size: 10px !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  color: white;
+  font-size: 10px !important;
+}
+
+.botonBuscar 
+{
+    min-width: 50px !important;
+    padding: 0;
+    margin-left: 5px;
+    background-color: #707070;
+    border-color: white !important;
+
+}
+
+::ng-deep .mat-tooltip {
+    font-size: 16px !important;
+    background-color: #303030 !important;
+    color: white !important;
+    border-radius: 2px 8px !important;
+    border-width: 5px;
+  }
+
+  .iconoDisabled {
+    filter: grayscale(0.4);
+    font-size: 17px;
+    padding-left: 1px;
+    padding-right: 3px;
+    margin-left: 5px;
+  }
+
+.example-spacer {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 26px !important;
+    font-weight: 450 !important;
+    color: #EEEEEE;
+    margin: 10px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .mensajeBarra {
+    flex: 1 1 auto;
+    font-weight: 500 !important;
+    font-size: 26px !important;
+    text-align: center;
+    color: white;
+    margin-top: 5px !important;
+    width: 100%;
+    height: 60px;
+  }
+
+  .mensajeEstadoBar {
+    flex: 1 1 auto;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    text-align: left;
+    max-width: 500px;
+    width: 500px;
+    border-style: solid;
+    border-width: 1px;
+    height: 30px;
+    display: flex;
+    margin: auto;
+  }
+
+  .mensajeEstado {
+      flex: 1;
+    margin-top: 0 auto !important;
+    text-align: left;
+    align-content: center;
+    margin-left: 5px;
+  }
+
+  .iconos {
+      width: 24;
+      height: 24px;
+  }
+
+#contenedor {
+    margin-top: 52px;
+    margin-bottom: 46px;
+    background-color: #606060;
+}
+
+mat-sidenav, mat-sidenav.mat-locked-open, mat-sidenav.mat-closed.mat-locked-open-add-active {
+    width: 300px !important;
+   }
+
+.acordeon .mat-expansion-panel-header-title, 
+.acordeon .mat-expansion-panel-header-description {
+flex-basis: 0;
+}
+
+.acordeon .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.acordeonIcon 
+  {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    font-size: 32px !important;
+    margin: auto;
+  }
+
+
+#menuIzquierdo {
+    background-color: #505050;
+  }
+
+  .mat-menu-panel.emenu {
+    max-width: 600px !important;
+    width: 600px !important;
+  }
+
+  
+  .itemIcon 
+  {
+      width: 32px !important;
+      height: 32px !important;
+      margin-top: -2px !important;
+      margin-left: -12px !important;
+    }
+  
+.itemBoton 
+{
+    width: 110% !important;
+    text-align: left !important;
+    margin-left: -10px !important;
+    margin-top: 10px !important;
+    border-radius: 2px 8px !important;
+    border-width: 1px;
+    border-color: #BBBBBB;
+    height: 50px !important;;
+    background-color: #EEEEEE;
+    font-size: 18px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer !important;
+    box-shadow: 0 0.5px 1px 0 rgba(0, 0, 0, 0.2), 0 0.5px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+.itemTitulo
+{
+    font-size: 18px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 5px !important;
+    flex: 5;
+}
+
+.itemContenedorImagen
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.itemImagen 
+{
+    margin-top: -2px !important;
+    margin-left: -12px !important;
+    width: 48px !important;
+    flex: 1;
+  }
+
+ 
+  .headerIcon 
+{
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+ .primerPanel
+    {
+      font-size: 16px  !important;
+      font-weight: 650;
+      background-color: #AAAAAA;
+      margin: 5px;
+      margin-top: 5px !important;
+    }
+
+.otroPanel
+  {
+    margin: 5px;
+    margin-top: 5px !important;
+    background-color: white;
+  }
+
+.primerPanel:hover
+  {
+    font-size: 16px  !important;
+    font-weight: 650;
+    background-color: #505050;
+  }
+
+.acordionPrimario
+  {
+    font-size: 24px  !important;
+    font-weight: 650;
+    margin-top: 15px;
+  }
+   
+  .acordionSecundario
+  {
+    font-size: 24px  !important;
+    font-weight: 650;
+    margin-top: 15px;
+  }
+
+.titulo
+  {
+    font-size: 18px  !important;
+    font-weight: 650;
+  }
+
+#pie 
+  {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 45px;
+    min-height: 45px !important;
+    width: 100% !important;
+    background-color: #353535 !important;
+    align-items: center;
+  }
+
+.marcoProceso {
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    align-content: center;
+    background-color: rgba(0,0,0, 0.5);
+    background-size: cover;
+    z-index: 1;
+  }
+  
+ .barraProceso {
+    text-align: center;
+    align-content: center;
+    position: relative;
+    width: 120px;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(91, 92, 90, 0.9);
+    margin-top: -60px;
+    margin-left: -60px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px 16px;
+    border-color: white;
+    padding: 5px;
+    z-index: 1;
+  }
+
+  .irArriba {
+    flex: 1;
+    text-align: right;
+    align-items: right;
+    align-content: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 50px !important;
+    margin-right: 15px !important;
+    transition: all 5s ease-in-out;
+  }
+
+  .botonDerecho {
+    height: 48px !important;
+    width: 48px !important;
+    background-color: #454545;
+    margin-right: 10px;
+    margin-top: -20px;
+}
+
+.miIcon {
+    height: 32px !important;
+    width: 32px !important;
+    align-content: center;
+    margin-top: -15px !important;
+    margin-left: 1px !important;
+}
+
+
+
+  ::ng-deep .proceso {
+    margin: 0 auto;
+  }
+
+  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: white;
+    }
+
+    ::ng-deep .tituloProceso {
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        color: white;
+    }
+
+::ng-deep snack-bar-container.custom-class {
+    margin-top: -100px !important;
+    background-color: #999999;
+    color: #202020;;
+  }
+  
+  ::ng-deep .custom-class .mat-simple-snackbar {
+    font-size: 24px;
+    text-align: center;
+    text-shadow: 1px 1px 4px #EEEEEE;
+    justify-content: center;
+    white-space: normal;
+    line-height: 30px !important;
+    background-color: #999999;
+    color: #202020;;
+  }
+
+  ::ng-deep .custom-class .mat-simple-snackbar.container {
+    max-width: 1200px;
+    width: 1200px;
+    margin-top: -100px !important;
+
+  }
+
+   ::ng-deep snack-bar-container.custom-class-red {
+    margin-top: -100px !important;
+    background-color: orangered !important; 
+    color: white;
+  }
+  
+  ::ng-deep .custom-class-red .mat-simple-snackbar {
+    font-size: 24px;
+    text-shadow: 1px 1px 4px #101010;
+    text-align: center;
+    background-color: orangered !important; 
+    color: white;
+    justify-content: center;
+    white-space: normal;
+    line-height: 30px !important;
+  }
+
+::ng-deep .custom-class-red .mat-simple-snackbar.container {
+    max-width: 1200px;
+    width: 1200px;
+    background-color: rgba(3,90,161,0.1) !important; 
+    margin-top: -100px !important;
+    color: white;
+
+  }
+
+  .esconder 
+  {
+    display: none;
+  }
+
+  .barraTB
+  {
+    display: flex;
+    align-content: center !important;
+    align-items: center !important;
+    height: 50px !important; 
+  }
+
+  /* Icon 2 */
+
+  .appLogo
+  {
+    margin-left: 10px;
+    
+  }
+
+  .lineaApp
+  {
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+  } 
+
+  .botonHamburguesa:disabled
+  {
+    webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    
+  }

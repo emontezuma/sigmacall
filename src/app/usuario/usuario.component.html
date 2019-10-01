@@ -1,0 +1,92 @@
+<div class="contenido" class="mat-typography">
+    <div class="cabecera">
+      <mat-icon class="iconoDialogo" svgIcon="usuario"></mat-icon>
+      <p class="tituloDialogo"><strong>Mantenimiento de Usuarios</strong> {{ registroActual }}</p>
+    </div>
+  
+  
+  <mat-card class="posicion">
+    <mat-card-content >
+      <form novalidate="" #forma="ngForm">
+      <div class ="lista">
+        <div class="titulo">(1) Datos generales del usuario</div>
+            
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Perfil del usuario</mat-label>
+          <input matInput #txtID placeholder="Perfil del usuario" [(ngModel)]="referencia" maxlength="30" autocomplete="off" name="referencia" required #referenciaN="ngModel" (input)="cambiando($event)">
+          <mat-hint class="pista" align="end">{{referenciaN.value?.length || 0}} de 30</mat-hint>
+          <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Nombre del usuario</mat-label>
+          <input matInput #txtNombre placeholder="Nombre completo del usuario" [(ngModel)]="nombre" maxlength="100" autocomplete="off" name="nombre" required #nombreN="ngModel" (input)="cambiando($event)">
+          <mat-hint class="pista" align="end">{{nombreN.value?.length || 0}} de 100</mat-hint>
+          <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Rol del usuario</mat-label>
+          <mat-select [(value)]="rol" (selectionChange)="cambiando($event)">
+            <mat-option value="A">Administrador</mat-option>
+            <mat-option value="S">Supervisor</mat-option>
+            <mat-option value="C">Consulta</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="tituloSiguiente">(2) Preferencias de usuario</div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="cerrar_al_ejecutar" name="cerrar_al_ejecutar" color="warn">Cerrar automáticamente el menú al ejecutar una opción</mat-checkbox>                
+        </div>
+        <div class="cajaEstatus">
+          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="vista_resumida_fallas" name="vista_resumida_fallas" color="warn">Ver la consulta de fallas en modo resumen</mat-checkbox>                
+        </div> 
+      </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div class="cajaEstatus2">
+    <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="estatus" color="warn">  Registro activo</mat-checkbox>                
+    <p class="conError" *ngIf="accionado">El registro no se ha guardado</p>
+  </div> 
+  <div class="historia">
+    <div class="dosDatos60">
+      <div class="tituloH">Creado por</div>
+      <div class="valorH">{{ uCreacion }}</div>
+      <div class="tituloH">Modificado por</div>         
+      <div class="valorH">{{ uCambio }}</div>         
+    </div>
+    <div class="dosDatos40">
+      <div class="tituloH">Fecha/Hora</div>
+      <div class="valorH">{{ fCreacion | date:'EEE, dd-MMM-yyyy HH:mm:ss'}}</div>
+      <div class="tituloH">Fecha/Hora</div>                  
+      <div class="valorH">{{ fCambio | date:'EEE, dd-MMM-yyyy HH:mm:ss' }}</div>
+    </div>
+    
+  </div>
+  
+  <div class="pie">
+    <button class="botonOtro" mat-raised-button (click) = "nuevo()">
+      <mat-icon class="iconoBoton" svgIcon="nuevo"></mat-icon>
+      Nuevo
+    </button>
+    <button class="botonSi" [disabled]="!accionado" mat-raised-button (click) = "validar()">
+      <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+      Guardar
+    </button>
+    <button class="botonOtro" [disabled]="accionado || !encontrado" mat-raised-button (click) = "copiar()">
+      <mat-icon class="iconoBoton" svgIcon="copiar"></mat-icon>
+      Copiar
+    </button>
+    <button class="botonOtro" [disabled]="accionado || !encontrado" mat-raised-button (click) = "eliminar()">
+      <mat-icon class="iconoBoton" svgIcon="eliminar"></mat-icon>
+      Eliminar
+    </button>
+    <button class="botonNo" mat-raised-button (click) = "cancelar()">
+      <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+      {{ textoSalir }}
+    </button>
+    <button class="botonOtro" [disabled]="accionado || !encontrado" mat-raised-button (click) = "iniClave()">
+        <mat-icon class="iconoBoton" svgIcon="candado"></mat-icon>
+        Inicializar contraseña
+      </button>
+  </div>
+  </div>
+  

@@ -1,0 +1,170 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="todo" ng-app="app" ng-controller="AppCtrl" class="mat-typography">
+  <mat-toolbar id="barraNavegacion" *ngIf="verMenuSuperior" class="mat-elevation-z1">
+    <mat-toolbar-row class="barraTB">
+      <button class = "botonHamburguesa" mat-raised-button [matTooltip] = "menuHamburguesaTT" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "menuIzquierdo()">
+        <mat-icon class="iconoHamburguesa" [svgIcon]="iconoHamburguesa"></mat-icon>
+      </button>
+      <div class="appContenedor">
+        <div class="lineaApp"><img class="appLogo" [src]="logoAplicacion"><span class="appTitulo">Monitor</span><span class="appVersion">{{ appVersion }}</span>
+        </div>
+      </div>
+      <div class="imageContainer"><img class="miLogo" [src]="iconoCompania"></div>
+        <div class="appUser" *ngIf="!isHandset">
+          <mat-icon class = "relojIcono2" svgIcon="usuarioSolo"></mat-icon>
+          <span class="relojTitulo2">{{ usuarioActual }}</span>
+        </div>
+        <button class = "botonHamburguesa" mat-raised-button [matTooltip] = "cambioClave" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "cambiarClave()" [disabled]="noAutenticado">
+          <mat-icon class="iconoHamburguesa" svgIcon="cambioClave"></mat-icon>
+        </button>
+        <button class = "botonHamburguesa" mat-raised-button [matTooltip] = "cerrarSesion" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "cierreSesion()" [disabled]="noAutenticado">
+          <mat-icon class="iconoHamburguesa" svgIcon="cerrarSesion"></mat-icon>
+        </button>
+        
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container id="contenedor" resizable r-directions="['right']" fullscreen>
+    <mat-sidenav disableClose [opened]="abiertoSN" 
+    (open)="cambioSN()" (close)="cambioSN()" id="menuIzquierdo" #barraIzquierda mode="side">
+    <div class ="contenido">
+        <mat-accordion class="acordeon" [multi]="true">
+          <mat-expansion-panel class="otroPanel" hideToggle [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="acordionPrimario">
+                EN VIVO
+              </mat-panel-title>
+              <mat-icon class="headerIcon" svgIcon="envivo"></mat-icon>
+            </mat-expansion-panel-header>
+            <button class="itemBoton" mat-stroked-button (click)="carrusel()">
+              <mat-icon class="itemIcon" svgIcon="carrusel"></mat-icon>
+              CARRUSEL
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="fallas()">
+              <mat-icon class="itemIcon" svgIcon="fallas"></mat-icon>
+              FALLAS
+            </button>
+          </mat-expansion-panel>
+          <mat-expansion-panel class="otroPanel" hideToggle [expanded]="true">
+            <mat-expansion-panel-header class="acordeonTitulo">
+              <mat-panel-title class="acordionSecundario">
+                GRÁFICAS
+              </mat-panel-title>
+              <mat-icon class="headerIcon" svgIcon="grafica"></mat-icon>
+            </mat-expansion-panel-header>
+            <button class="itemBoton" mat-stroked-button (click)="graficar(1)">
+              <mat-icon class="itemIcon" svgIcon="estacion"></mat-icon>
+              Llamadas por estación
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="graficar(2)">
+              <mat-icon class="itemIcon" svgIcon="crono"></mat-icon>
+              Fallas por estación
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="graficar(3)">
+              <mat-icon class="itemIcon" svgIcon="tecnologia"></mat-icon>
+              Fallas por tecnología
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="graficar(4)">
+              <mat-icon class="itemIcon" svgIcon="top10"></mat-icon>
+              Top 10 de fallas
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="graficar(5)">
+              <mat-icon class="itemIcon" svgIcon="rendimiento"></mat-icon>
+              Rendimiento
+            </button>
+            </mat-expansion-panel>
+          <mat-expansion-panel class="otroPanel" hideToggle [expanded]="false">
+            <mat-expansion-panel-header class="acordeonTitulo">
+              <mat-panel-title class="acordionSecundario">
+                CATALOGOS
+              </mat-panel-title>
+              <mat-icon class="headerIcon" svgIcon="catalogos"></mat-icon>
+            </mat-expansion-panel-header>
+            <button class="itemBoton" mat-stroked-button (click)="recipientes()">
+              <mat-icon class="itemIcon" svgIcon="recipiente"></mat-icon>
+                Recipientes
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="alertas()">
+              <mat-icon class="itemIcon" svgIcon="alerta"></mat-icon>
+              Alertas
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="correos()">
+              <mat-icon class="itemIcon" svgIcon="distribucion"></mat-icon>
+                Reportes por correo 
+            </button>
+            
+          </mat-expansion-panel>
+          <mat-expansion-panel class="otroPanel" hideToggle [expanded]="false">
+            <mat-expansion-panel-header class="acordeonTitulo">
+              <mat-panel-title class="acordionSecundario">
+                CONFIGURAR
+              </mat-panel-title>
+              <mat-icon class="headerIcon" svgIcon="settings"></mat-icon>
+            </mat-expansion-panel-header>
+            <button class="itemBoton" mat-stroked-button (click)="usuarios()">
+              <mat-icon class="itemIcon" svgIcon="usuario"></mat-icon>
+                Gestión de usuarios
+              </button>
+            <button class="itemBoton" mat-stroked-button (click)="configVivo()">
+              <mat-icon class="itemIcon" svgIcon="grafica"></mat-icon>
+                Gráficas en vivo
+              </button>
+            <button class="itemBoton" mat-stroked-button (click)="configMonitor()">
+              <mat-icon class="itemIcon" svgIcon="monitor"></mat-icon>
+                Monitor de fallas
+            </button>
+            <button class="itemBoton" mat-stroked-button (click)="configMail()">
+              <mat-icon class="itemIcon" svgIcon="configurarMail"></mat-icon>
+                Correo corporativo
+            </button>
+          </mat-expansion-panel>
+        <mat-expansion-panel class="otroPanel" hideToggle [expanded]="false">
+          <mat-expansion-panel-header class="acordeonTitulo">
+            <mat-panel-title class="acordionSecundario">
+              REPORTES
+            </mat-panel-title>
+            <mat-icon class="headerIcon" svgIcon="consultas"></mat-icon>
+          </mat-expansion-panel-header>
+          <button class="itemBoton" mat-stroked-button (click)="exportar()">
+            <mat-icon class="itemIcon" svgIcon="exportar"></mat-icon>
+            Exportación
+          </button>          
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="scrolear" (scroll)="miScroll($event)" cdkScrollable >
+    <div class="contenidoPagina" [@efecto]="estado">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
+    <div *ngIf="verProceso" class="marcoProceso">
+        <div class="barraProceso">
+          <mat-progress-spinner class="proceso" diameter="80"
+            mode="indeterminate">
+          </mat-progress-spinner>
+          <div class="tituloProceso"><span>Trabajando...</span></div>
+        </div>
+      </div>
+      <div class="irArriba" *ngIf="verIrArriba">
+      <button class="botonDerecho" mat-fab color (click)="irArriba()" matTooltip = "{{ irArribaTT }}" matTooltipClass = "toolTip">
+        <mat-icon class="miIcon" svgIcon="subir"></mat-icon>
+      </button>
+    </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  <mat-toolbar id="pie" *ngIf="verPie" class="mat-elevation-y3">
+    <mat-toolbar-row>
+      <div class="soloLogo"><img class="miLogo2" [src]="logoCompania"></div>
+      <span class="mensajeBarra">{{ accion }}</span>
+      <button class = "botonCronos" *ngIf="!isHandset && vercronos" mat-raised-button (click) = "irCronos()">
+        <img class="logoCronos" [src]="iconoCronos">
+      </button>
+      <div class="appFecha" *ngIf="!isHandset">
+        <mat-icon class = "relojIcono" svgIcon="reloj"></mat-icon>
+        <span class="relojTitulo">{{ hora | date:'dd MMM yyyy HH:mm:ss' }}</span>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+

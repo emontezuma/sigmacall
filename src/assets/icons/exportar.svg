@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" width="32" height="32" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve" viewbox="0 0 32 32">
+
+<g>
+	<defs>
+		<path id="574330319_SVGID_1_" d="M29,49c0,1.657,1.343,3,3,3h22c1.657,0,3-1.343,3-3V15c0-1.657-1.343-3-3-3H32c-1.657,0-3,1.343-3,3V49z"></path>
+	</defs>
+	<use xlink:href="#574330319_SVGID_1_" style="overflow:visible;fill:#DEDCD9;"></use>
+	<clipPath id="574330319_SVGID_2_">
+		<use xlink:href="#574330319_SVGID_1_" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st1" style="opacity:0.5;clip-path:url(#574330319_SVGID_2_);;">
+		<path class="stshockcolor" d="M46,30h7v4h-7V30z M46,27h7v-4h-7V27z M46,20h7v-4h-7V20z M46,41h7v-4h-7V41z M46,48h7v-4h-7V48z M36,34h7v-4    h-7V34z M36,27h7v-4h-7V27z M36,20h7v-4h-7V20z M36,41h7v-4h-7V41z M36,48h7v-4h-7V48z" style="fill:#80B34F;;" data-st="fill:#80B34F;;"></path>
+	</g>
+	<polygon class="st4" points="58.25,53 36,53 36,12 58.25,50.538  " style="clip-path:url(#574330319_SVGID_2_);fill-opacity:0.15;;"></polygon>
+</g>
+<g>
+	<defs>
+		<path id="574330319_SVGID_3_" d="M34,58c-0.17,0-0.34-0.015-0.51-0.044l-25-4.311C7.051,53.397,6,52.149,6,50.689V13.31    c0-1.46,1.051-2.708,2.49-2.957l25-4.31C33.66,6.014,33.83,6,34,6c0.702,0,1.388,0.247,1.933,0.706C36.609,7.275,37,8.115,37,9v46    c0,0.885-0.391,1.725-1.067,2.295C35.388,57.754,34.702,58,34,58z"></path>
+	</defs>
+	<clipPath id="574330319_SVGID_4_">
+		<use xlink:href="#574330319_SVGID_3_" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st2" style="clip-path:url(#574330319_SVGID_4_);;">
+		<path class="stshockcolor" d="M5,5h33v55H5V5z" style="fill:#80B34F;;" data-st="fill:#80B34F;;"></path>
+		<polygon class="st3" points="36,59.304 6.143,59.304 6.143,4.286 36,56   " style="fill-opacity:0.15;;"></polygon>
+	</g>
+</g>
+<polygon class="st5" points="28,23 23.644,23.317 21.156,29.141 21.156,29.141 18.782,23.672 15,23.947 19.16,32 15,40.053   18.782,40.328 21.156,34.858 23.644,40.683 28,41 23.212,32 " style="fill:#DEDCD9;;"></polygon>
+</svg>

@@ -1,0 +1,37 @@
+
+<div class="contenido" class="mat-typography">
+  <div class="cabecera">
+    <mat-icon class="iconoDialogo" svgIcon="usuario"></mat-icon>
+    <p class="tituloDialogo"><strong>Acceso SIGMA-Monitor</strong></p>
+  </div>
+
+<mat-card class="posicion">
+  <mat-card-content >
+    <form novalidate="" #forma="ngForm">
+    <div class ="lista">
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">ID del usuario</mat-label>
+          <input matInput #tstID placeholder="ID del usuario" [(ngModel)]="referencia" maxlength="30" autocomplete="off" name="referencia" #referenciaN="ngModel" required>
+          <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Contraseña</mat-label>
+          <input matInput #txtClave type="password" placeholder="Contraseña" [(ngModel)]="clave" maxlength="30" autocomplete="off" name="clave" #claveN="ngModel" required>
+          <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+        </mat-form-field>
+    </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<div class="pie">
+  <button class="botonOtro" mat-raised-button (click) = "validar()">
+    <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+    Ingresar
+  </button>
+  <button class="botonNo" mat-raised-button (click) = "cancelar()">
+    <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+    Cancelar
+  </button>
+</div>
+</div>

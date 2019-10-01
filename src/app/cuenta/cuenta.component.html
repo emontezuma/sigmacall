@@ -1,0 +1,378 @@
+<div class="contenido" class="mat-typography">
+    <div class="cabecera">
+      <mat-icon class="iconoDialogo" svgIcon="distribucion"></mat-icon>
+      <p class="tituloDialogo"><strong>Mantenimiento de Reportes</strong> {{ registroActual }}</p>
+    </div>
+  
+  
+  <mat-card class="posicion">
+    <mat-card-content >
+      <form novalidate="" #forma="ngForm">
+      <div class ="lista">
+        <div class="titulo">(1) Datos generales del reporte a enviar</div>
+            
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Nombre o descripción del reporte</mat-label>
+          <input matInput #txtR placeholder="Nombre o descripción del reporte" [(ngModel)]="nombre" maxlength="60" autocomplete="off" name="nombre" required #nombreN="ngModel" (input)="cambiando($event)">
+          <mat-hint class="pista" align="end">{{nombreN.value?.length || 0}} de 60</mat-hint>
+          <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Lista de correo (Para)</mat-label>
+          <textarea matInput #txtMail cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Lsta de correos sección 'Para'" [(ngModel)]="para" maxlength="2000" autocomplete="off" name="para"  #paraN="ngModel" (input)="cambiando($event)"></textarea>
+          <mat-hint class="pista" align="end">{{paraN.value?.length || 0}} de 2000</mat-hint>
+          <mat-hint class="pista" align="start">Separe cada cuenta de correos con un punto y coma (;)</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Lista de correo (Con copia)</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Lsta de correos sección 'Con copia'" [(ngModel)]="copia" maxlength="2000" autocomplete="off" name="copia"  #copiaN="ngModel" (input)="cambiando($event)"></textarea>
+          <mat-hint class="pista" align="end">{{copiaN.value?.length || 0}} de 2000</mat-hint>
+          <mat-hint class="pista" align="start">Separe cada cuenta de correos con un punto y coma (;)</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Lista de correo (Con copia oculta)</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Lsta de correos sección 'Con copia oculta'" [(ngModel)]="oculta" maxlength="2000" autocomplete="off" name="oculta"  #ocultaN="ngModel" (input)="cambiando($event)"></textarea>
+          <mat-hint class="pista" align="end">{{ocultaN.value?.length || 0}} de 2000</mat-hint>
+          <mat-hint class="pista" align="start">Separe cada cuenta de correos con un punto y coma (;)</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Título del correo a enviar (Subject)</mat-label>
+          <textarea matInput #txtTitulo cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Título que se colocará en el correo a enviar" [(ngModel)]="titulo" maxlength="200" autocomplete="off" name="titulo" required #tituloN="ngModel" (input)="cambiando($event)"></textarea>
+          <mat-hint class="pista" align="end">{{tituloN.value?.length || 0}} de 200</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="texto">
+          <mat-label class="etiqueta">Cuerpo del correo a enviar (Body)</mat-label>
+          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Escriba lo que se enviaría como cuerpo del correo" [(ngModel)]="cuerpo" maxlength="1000" autocomplete="off" name="cuerpo"  #cuerpoN="ngModel" (input)="cambiando($event)"></textarea>
+          <mat-hint class="pista" align="end">{{cuerpoN.value?.length || 0}} de 1000</mat-hint>
+        </mat-form-field>
+        <div class="tituloSiguiente">(2) Reportes a enviar</div>
+        <div class="subTitulo">(2.1) Fallas por estación (frecuencia)</div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">¿Qué se enviará?</mat-label>
+              <mat-select [(value)]="reporte01" #reporte1 (selectionChange)="cambiando($event)">
+                <mat-option value="N">No enviar</mat-option>
+                <mat-option value="T">Enviar gráfica y datos</mat-option>
+                <mat-option value="G">Enviar gráfica</mat-option>
+                <mat-option value="D">Enviar datos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="caja2">
+            <mat-label>Extracción</mat-label>
+            <mat-select [(value)]="periodo01" #periodo1 [disabled]="reporte1.value=='N'" (selectionChange)="cambiando($event)">
+              <mat-option value="0">Segundos (atrás)</mat-option>
+              <mat-option value="1">Minutos (atrás)</mat-option>
+              <mat-option value="2">Horas (atrás)</mat-option>
+              <mat-option value="3">Días (atrás)</mat-option>
+              <mat-option value="4">Semanas (atrás)</mat-option>
+              <mat-option value="5">Meses (atrás)</mat-option>
+              <mat-option value="6">Años (atrás)</mat-option>
+              <mat-option value="10">Lo que va del día</mat-option>
+              <mat-option value="11">Lo que va de la semana</mat-option>
+              <mat-option value="12">Lo que va del mes (MtD)</mat-option>
+              <mat-option value="13">Lo que va del año (YtD)</mat-option>
+              <mat-option value="20">Ayer</mat-option>
+              <mat-option value="21">Semana anterior</mat-option>
+              <mat-option value="22">Mes anterior</mat-option>
+              <mat-option value="23">Año anterior</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-form-field class="caja3">
+              <mat-label class="etiqueta">Lapso de espera</mat-label>
+              <input matInput #txtTiempo placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempo01" maxlength="8" autocomplete="off" name="tiempo01" required #tiempo01N="ngModel" (input)="cambiando($event)" [disabled]="reporte1.value=='N' || periodo1.value>=10">
+              <mat-hint class="pista" align="start">1-99999999</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="subTitulo">(2.2) Fallas por estación (frecuencia y tiempo)</div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">¿Qué se enviará?</mat-label>
+              <mat-select [(value)]="reporte02" #reporte2 (selectionChange)="cambiando($event)">
+                <mat-option value="N">No enviar</mat-option>
+                <mat-option value="T">Enviar gráfica y datos</mat-option>
+                <mat-option value="G">Enviar gráfica</mat-option>
+                <mat-option value="D">Enviar datos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="caja2">
+            <mat-label>Extracción</mat-label>
+            <mat-select [(value)]="periodo02" #periodo2 [disabled]="reporte2.value=='N'" (selectionChange)="cambiando($event)">
+              <mat-option value="0">Segundos (atrás)</mat-option>
+              <mat-option value="1">Minutos (atrás)</mat-option>
+              <mat-option value="2">Horas (atrás)</mat-option>
+              <mat-option value="3">Días (atrás)</mat-option>
+              <mat-option value="4">Semanas (atrás)</mat-option>
+              <mat-option value="5">Meses (atrás)</mat-option>
+              <mat-option value="6">Años (atrás)</mat-option>
+              <mat-option value="10">Lo que va del día</mat-option>
+              <mat-option value="11">Lo que va de la semana</mat-option>
+              <mat-option value="12">Lo que va del mes (MtD)</mat-option>
+              <mat-option value="13">Lo que va del año (YtD)</mat-option>
+              <mat-option  value="20">Ayer</mat-option>
+              <mat-option value="21">Semana anterior</mat-option>
+              <mat-option value="22">Mes anterior</mat-option>
+              <mat-option value="23">Año anterior</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-form-field class="caja3">
+              <mat-label class="etiqueta">Lapso de espera</mat-label>
+              <input matInput #txtTiempo placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempo02" maxlength="8" autocomplete="off" name="tiempo02" required #tiempo02N="ngModel" (input)="cambiando($event)" [disabled]="reporte2.value=='N' || periodo2.value>=10">
+              <mat-hint class="pista" align="start">1-99999999</mat-hint>
+            </mat-form-field>
+          </div>
+          
+          <div class="subTitulo">(2.3) Fallas por tecnología (frecuencia y tiempo)</div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">¿Qué se enviará?</mat-label>
+              <mat-select [(value)]="reporte03" #reporte3 (selectionChange)="cambiando($event)">
+                <mat-option value="N">No enviar</mat-option>
+                <mat-option value="T">Enviar gráfica y datos</mat-option>
+                <mat-option value="G">Enviar gráfica</mat-option>
+                <mat-option value="D">Enviar datos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="caja2">
+            <mat-label>Extracción</mat-label>
+            <mat-select [(value)]="periodo03" #periodo3 [disabled]="reporte3.value=='N'" (selectionChange)="cambiando($event)">
+              <mat-option value="0">Segundos (atrás)</mat-option>
+              <mat-option value="1">Minutos (atrás)</mat-option>
+              <mat-option value="2">Horas (atrás)</mat-option>
+              <mat-option value="3">Días (atrás)</mat-option>
+              <mat-option value="4">Semanas (atrás)</mat-option>
+              <mat-option value="5">Meses (atrás)</mat-option>
+              <mat-option value="6">Años (atrás)</mat-option>
+              <mat-option value="10">Lo que va del día</mat-option>
+              <mat-option value="11">Lo que va de la semana</mat-option>
+              <mat-option value="12">Lo que va del mes (MtD)</mat-option>
+              <mat-option value="13">Lo que va del año (YtD)</mat-option>
+              <mat-option value="20">Ayer</mat-option>
+              <mat-option value="21">Semana anterior</mat-option>
+              <mat-option value="22">Mes anterior</mat-option>
+              <mat-option value="23">Año anterior</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-form-field class="caja3">
+              <mat-label class="etiqueta">Lapso de espera</mat-label>
+              <input matInput #txtTiempo placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempo03" maxlength="8" autocomplete="off" name="tiempo03" required #tiempo03N="ngModel" (input)="cambiando($event)" [disabled]="reporte3.value=='N' || periodo3.value>=10">
+              <mat-hint class="pista" align="start">1-99999999</mat-hint>
+            </mat-form-field>
+          </div>
+
+
+
+          <div class="subTitulo">(2.4) Top 10 de fallas</div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">¿Qué se enviará?</mat-label>
+              <mat-select [(value)]="reporte04" #reporte4 (selectionChange)="cambiando($event)">
+                <mat-option value="N">No enviar</mat-option>
+                <mat-option value="D">Enviar datos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="caja2">
+            <mat-label>Extracción</mat-label>
+            <mat-select [(value)]="periodo04" #periodo4 [disabled]="reporte4.value=='N'" (selectionChange)="cambiando($event)">
+              <mat-option value="0">Segundos (atrás)</mat-option>
+              <mat-option value="1">Minutos (atrás)</mat-option>
+              <mat-option value="2">Horas (atrás)</mat-option>
+              <mat-option value="3">Días (atrás)</mat-option>
+              <mat-option value="4">Semanas (atrás)</mat-option>
+              <mat-option value="5">Meses (atrás)</mat-option>
+              <mat-option value="6">Años (atrás)</mat-option>
+              <mat-option value="10">Lo que va del día</mat-option>
+              <mat-option value="11">Lo que va de la semana</mat-option>
+              <mat-option value="12">Lo que va del mes (MtD)</mat-option>
+              <mat-option value="13">Lo que va del año (YtD)</mat-option>
+              <mat-option value="20">Ayer</mat-option>
+              <mat-option value="21">Semana anterior</mat-option>
+              <mat-option value="22">Mes anterior</mat-option>
+              <mat-option value="23">Año anterior</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-form-field class="caja3">
+              <mat-label class="etiqueta">Lapso de espera</mat-label>
+              <input matInput #txtTiempo placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempo04" maxlength="8" autocomplete="off" name="tiempo04" required #tiempo04N="ngModel" (input)="cambiando($event)" [disabled]="reporte4.value=='N' || periodo4.value>=10">
+              <mat-hint class="pista" align="start">1-99999999</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="subTitulo">(2.5) Rendimiento por responsable (Staff)</div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">¿Qué se enviará?</mat-label>
+              <mat-select [(value)]="reporte05" #reporte5 (selectionChange)="cambiando($event)">
+                <mat-option value="N">No enviar</mat-option>
+                <mat-option value="T">Enviar gráfica y datos</mat-option>
+                <mat-option value="G">Enviar gráfica</mat-option>
+                <mat-option value="D">Enviar datos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="caja2">
+            <mat-label>Extracción</mat-label>
+            <mat-select [(value)]="periodo05" #periodo5 [disabled]="reporte5.value=='N'" (selectionChange)="cambiando($event)">
+              <mat-option value="0">Segundos (atrás)</mat-option>
+              <mat-option value="1">Minutos (atrás)</mat-option>
+              <mat-option value="2">Horas (atrás)</mat-option>
+              <mat-option value="3">Días (atrás)</mat-option>
+              <mat-option value="4">Semanas (atrás)</mat-option>
+              <mat-option value="5">Meses (atrás)</mat-option>
+              <mat-option value="6">Años (atrás)</mat-option>
+              <mat-option value="10">Lo que va del día</mat-option>
+              <mat-option value="11">Lo que va de la semana</mat-option>
+              <mat-option value="12">Lo que va del mes (MtD)</mat-option>
+              <mat-option value="13">Lo que va del año (YtD)</mat-option>
+              <mat-option value="20">Ayer</mat-option>
+              <mat-option value="21">Semana anterior</mat-option>
+              <mat-option value="22">Mes anterior</mat-option>
+              <mat-option value="23">Año anterior</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-form-field class="caja3">
+              <mat-label class="etiqueta">Lapso de espera</mat-label>
+              <input matInput #txtTiempo placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempo05" maxlength="8" autocomplete="off" name="tiempo05" required #tiempo05N="ngModel" (input)="cambiando($event)" [disabled]="reporte5.value=='N' || periodo5.value>=10">
+              <mat-hint class="pista" align="start">1-99999999</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="subTitulo">(2.6) Estadística de fallas cerradas</div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">¿Qué se enviará?</mat-label>
+              <mat-select [(value)]="reporte06" #reporte6 (selectionChange)="cambiando($event)">
+                <mat-option value="N">No enviar</mat-option>
+                <mat-option value="D">Enviar datos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="caja2">
+            <mat-label>Extracción</mat-label>
+            <mat-select [(value)]="periodo06" #periodo6 [disabled]="reporte6.value=='N'" (selectionChange)="cambiando($event)">
+              <mat-option value="0">Segundos (atrás)</mat-option>
+              <mat-option value="1">Minutos (atrás)</mat-option>
+              <mat-option value="2">Horas (atrás)</mat-option>
+              <mat-option value="3">Días (atrás)</mat-option>
+              <mat-option value="4">Semanas (atrás)</mat-option>
+              <mat-option value="5">Meses (atrás)</mat-option>
+              <mat-option value="6">Años (atrás)</mat-option>
+              <mat-option value="10">Lo que va del día</mat-option>
+              <mat-option value="11">Lo que va de la semana</mat-option>
+              <mat-option value="12">Lo que va del mes (MtD)</mat-option>
+              <mat-option value="13">Lo que va del año (YtD)</mat-option>
+              <mat-option value="20">Ayer</mat-option>
+              <mat-option value="21">Semana anterior</mat-option>
+              <mat-option value="22">Mes anterior</mat-option>
+              <mat-option value="23">Año anterior</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-form-field class="caja3">
+              <mat-label class="etiqueta">Lapso de espera</mat-label>
+              <input matInput #txtTiempo placeholder="Segundos" type="number" min="1" max="100000000" [(ngModel)]="tiempo06" maxlength="8" autocomplete="off" name="tiempo06" required #tiempo06N="ngModel" (input)="cambiando($event)" [disabled]="reporte6.value=='N' || periodo6.value>=10">
+              <mat-hint class="pista" align="start">1-99999999</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="subTitulo">(2.7) Fallas abiertas</div>
+            <mat-form-field class="texto">
+              <mat-label class="etiqueta">¿Qué se enviará?</mat-label>
+              <mat-select [(value)]="reporte07" (selectionChange)="cambiando($event)">
+                <mat-option value="N">No enviar</mat-option>
+                <mat-option value="D">Enviar datos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="tituloSiguiente">(3) Periodicidad del reporte</div>
+            <div class="cajaDatos">
+              <mat-form-field class="caja11">
+                <mat-label class="etiqueta">¿Cuando se envía?</mat-label>
+                <mat-select [(value)]="fecha" (selectionChange)="cambiando($event)">
+                  <mat-option value="T">Todos los días</mat-option>
+                  <mat-option value="LV">De lunes a viernes</mat-option>
+                  <mat-option value="L">Cada lunes</mat-option>
+                  <mat-option value="M">Cada martes</mat-option>
+                  <mat-option value="MI">Cada miércoles</mat-option>
+                  <mat-option value="J">Cada jueves</mat-option>
+                  <mat-option value="V">Cada viernes</mat-option>
+                  <mat-option value="S">Cada sábado</mat-option>
+                  <mat-option value="D">Cada domingo</mat-option>
+                  <mat-option value="1M">El primer día del mes</mat-option>
+                  <mat-option value="UM">El último día del mes</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="caja12">
+                <mat-label class="etiqueta">¿A qué hora se envía?</mat-label>
+                <mat-select [(value)]="hora" (selectionChange)="cambiando($event)">
+                  <mat-option value="T">A toda hora</mat-option>
+                  <mat-option value="0">0:00</mat-option>
+                  <mat-option value="1">1:00am</mat-option>
+                  <mat-option value="2">2:00am</mat-option>
+                  <mat-option value="3">3:00am</mat-option>
+                  <mat-option value="4">4:00am</mat-option>
+                  <mat-option value="5">5:00am</mat-option>
+                  <mat-option value="6">6:00am</mat-option>
+                  <mat-option value="7">7:00am</mat-option>
+                  <mat-option value="8">8:00am</mat-option>
+                  <mat-option value="9">9:00am</mat-option>
+                  <mat-option value="10">10:00am</mat-option>
+                  <mat-option value="11">11:00am</mat-option>
+                  <mat-option value="12">12:00m</mat-option>
+                  <mat-option value="13">1:00pm</mat-option>
+                  <mat-option value="14">2:00pm</mat-option>
+                  <mat-option value="15">3:00pm</mat-option>
+                  <mat-option value="16">4:00pm</mat-option>
+                  <mat-option value="17">5:00pm</mat-option>
+                  <mat-option value="18">6:00pm</mat-option>
+                  <mat-option value="19">7:00pm</mat-option>
+                  <mat-option value="20">8:00pm</mat-option>
+                  <mat-option value="21">9:00pm</mat-option>
+                  <mat-option value="22">10:00pm</mat-option>
+                  <mat-option value="23">11:00pm</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>      
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div class="cajaEstatus2">
+    <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="estatus" color="warn">  Registro activo</mat-checkbox>                
+    <p class="conError" *ngIf="accionado">El registro no se ha guardado</p>
+  </div> 
+  <div class="historia">
+    <div class="dosDatos60">
+      <div class="tituloH">Creado por</div>
+      <div class="valorH">{{ uCreacion }}</div>
+      <div class="tituloH">Modificado por</div>         
+      <div class="valorH">{{ uCambio }}</div>         
+    </div>
+    <div class="dosDatos40">
+      <div class="tituloH">Fecha/Hora</div>
+      <div class="valorH">{{ fCreacion | date:'EEE, dd-MMM-yyyy HH:mm:ss'}}</div>
+      <div class="tituloH">Fecha/Hora</div>                  
+      <div class="valorH">{{ fCambio | date:'EEE, dd-MMM-yyyy HH:mm:ss' }}</div>
+    </div>
+    
+  </div>
+  
+  <div class="pie">
+    <button class="botonOtro" mat-raised-button (click) = "nuevo()">
+      <mat-icon class="iconoBoton" svgIcon="nuevo"></mat-icon>
+      Nuevo
+    </button>
+    <button class="botonSi" [disabled]="!accionado" mat-raised-button (click) = "validar()">
+      <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+      Guardar
+    </button>
+    <button class="botonOtro" [disabled]="accionado || !encontrado" mat-raised-button (click) = "copiar()">
+      <mat-icon class="iconoBoton" svgIcon="copiar"></mat-icon>
+      Copiar
+    </button>
+    <button class="botonOtro" [disabled]="accionado || !encontrado" mat-raised-button (click) = "eliminar()">
+      <mat-icon class="iconoBoton" svgIcon="eliminar"></mat-icon>
+      Eliminar
+    </button>
+    <button class="botonNo" mat-raised-button (click) = "cancelar()">
+      <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+      {{ textoSalir }}
+    </button>
+  </div>
+  </div>
+  

@@ -1,0 +1,54 @@
+<div class="contenido" class="mat-typography">
+    <div class="cabecera">
+      <mat-icon class="iconoDialogo" svgIcon="configurarMail"></mat-icon>
+      <p class="tituloDialogo"><strong>Configurar el correo corporativo</strong></p>
+    </div>
+  
+  <mat-card class="posicion">
+    <mat-card-content >
+      <form novalidate="" #forma="ngForm">
+      <div class ="lista">
+          <mat-form-field class="texto">
+            <mat-label class="etiqueta">Dirección del correo electrónico</mat-label>
+            <input matInput #txtC placeholder="Dirección del correo electrónico" [(ngModel)]="correo_cuenta" maxlength="100" autocomplete="off" name="correo_cuenta" #correo_cuentaN="ngModel" required>
+            <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+            <mat-hint class="pista" align="end">{{correo_cuentaN.value?.length || 0}} de 100</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="texto">
+            <mat-label tupclass="etiqueta">Contraseña</mat-label>
+            <input matInput #txtP type="password" placeholder="Contraseña" [(ngModel)]="correo_clave" maxlength="100" autocomplete="off" name="correo_clave" #correo_claveN="ngModel" required>
+            <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="texto">
+            <mat-label class="etiqueta">Nombre del host</mat-label>
+            <input matInput #txtH placeholder="Nombre del host" [(ngModel)]="correo_host" maxlength="100" autocomplete="off" name="correo_host" required #correo_hostN="ngModel">
+            <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+            <mat-hint class="pista" align="end">{{correo_hostN.value?.length || 0}} de 100</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="texto">
+            <mat-label class="etiqueta">Número de puerto</mat-label>
+            <input matInput #txtPt placeholder="Número de puerto" [(ngModel)]="correo_puerto" maxlength="100" autocomplete="off" name="correo_puerto" required #correo_puertoN="ngModel">
+            <mat-hint class="pista" align="start">Campo requerido</mat-hint>
+            <mat-hint class="pista" align="end">{{correo_puertoN.value?.length || 0}} de 100</mat-hint>
+          </mat-form-field>
+          <div class="cajaEstatus2">
+            <mat-checkbox class="estatus" disableRipple="true" [(ngModel)]="correo_ssl" name="correo_ssl" color="warn">Seguridad SSL</mat-checkbox>                
+          </div> 
+      </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <div class="pie">
+    <button class="botonOtro" mat-raised-button (click) = "validar()">
+      <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+      Guardar
+    </button>
+    <button class="botonNo" mat-raised-button (click) = "cancelar()">
+      <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+      Cancelar
+    </button>
+  </div>
+  </div>
+  

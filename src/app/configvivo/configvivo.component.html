@@ -1,0 +1,124 @@
+<div class="contenido" class="mat-typography">
+    <div class="cabecera">
+      <mat-icon class="iconoDialogo" svgIcon="grafica"></mat-icon>
+      <p class="tituloDialogo"><strong>Configurar el carrusel</strong></p>
+    </div>
+  
+  <mat-card class="posicion">
+    <mat-card-content >
+      <form novalidate="" #forma="ngForm">
+      <div class ="lista">
+          <div class="tituloSiguiente">(1) Gráficas/Tablas a mostrar</div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">Llamadas por Estación</mat-label>
+              <mat-select [(value)]="grafica01" name="grafica01" #gra1>              
+              <mat-option value="S">Reproducir</mat-option>
+              <mat-option value="N">No reproducir</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-form-field class="caja2">
+              <mat-label class="etiqueta">Duración</mat-label>
+              <input matInput placeholder="Segundos" [disabled]="gra1.value=='N'" type="number" min="1" max="120" [(ngModel)]="duracion01" maxlength="3" autocomplete="off" name="duracion01" required #duracion01N="ngModel">
+              <mat-hint class="pista" align="start">Segundos: 10-120</mat-hint>
+            </mat-form-field>
+          </div>  
+
+          <div class="cajaDatos">
+              <mat-form-field class="caja1">
+                <mat-label class="etiqueta">Fallas por Estación (tiempo y frecuencia)</mat-label>
+                <mat-select [(value)]="grafica02" name="grafica02" #gra2>              
+                <mat-option value="S">Reproducir</mat-option>
+                <mat-option value="N">No reproducir</mat-option>
+              </mat-select>
+              </mat-form-field>
+              <mat-form-field class="caja2">
+                <mat-label class="etiqueta">Duración</mat-label>
+                <input matInput placeholder="Duración" [disabled]="gra2.value=='N'" type="number" min="1" max="120" [(ngModel)]="duracion02" maxlength="3" autocomplete="off" name="duracion02" required #duracion02N="ngModel" >
+                <mat-hint class="pista" align="start">Segundos: 10-120</mat-hint>
+              </mat-form-field>
+            </div>  
+            <div class="cajaDatos">
+                <mat-form-field class="caja1">
+                  <mat-label class="etiqueta">Fallas por Tecnología (tiempo y frecuencia)</mat-label>
+                  <mat-select [(value)]="grafica03" name="grafica03" #gra3>              
+                  <mat-option value="S">Reproducir</mat-option>
+                  <mat-option value="N">No reproducir</mat-option>
+                </mat-select>
+                </mat-form-field>
+                <mat-form-field class="caja2">
+                  <mat-label class="etiqueta">Duración</mat-label>
+                  <input matInput placeholder="Duración" [disabled]="gra3.value=='N'" type="number" min="1" max="120" [(ngModel)]="duracion03" maxlength="3" autocomplete="off" name="duracion03" required #duracion03N="ngModel" >
+                  <mat-hint class="pista" align="start">Segundos: 10-120</mat-hint>
+                </mat-form-field>
+              </div> 
+              
+              <div class="cajaDatos">
+                  <mat-form-field class="caja1">
+                    <mat-label class="etiqueta">Top 10 de fallas</mat-label>
+                    <mat-select [(value)]="grafica04" name="grafica04" #gra4>              
+                    <mat-option value="S">Reproducir</mat-option>
+                    <mat-option value="N">No reproducir</mat-option>
+                  </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="caja2">
+                    <mat-label class="etiqueta">Duración</mat-label>
+                    <input matInput placeholder="Duración" [disabled]="gra4.value=='N'" type="number" min="1" max="120" [(ngModel)]="duracion04" maxlength="3" autocomplete="off" name="duracion04" required #duracion04N="ngModel" >
+                    <mat-hint class="pista" align="start">Segundos: 10-120</mat-hint>
+                  </mat-form-field>
+                </div> 
+
+                <div class="cajaDatos">
+                    <mat-form-field class="caja1">
+                      <mat-label class="etiqueta">Indicadores de rendimiento</mat-label>
+                      <mat-select [(value)]="grafica05" name="grafica05" #gra5>              
+                      <mat-option value="S">Reproducir</mat-option>
+                      <mat-option value="N">No reproducir</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="caja2">
+                      <mat-label class="etiqueta">Duración</mat-label>
+                      <input matInput placeholder="Duración" [disabled]="gra5.value=='N'" type="number" min="1" max="120" [(ngModel)]="duracion05" maxlength="3" autocomplete="off" name="duracion05" required #duracion05N="ngModel" >
+                      <mat-hint class="pista" align="start">Segundos: 10-120</mat-hint>
+                    </mat-form-field>
+                  </div> 
+                
+                  <div class="cajaDatos">
+                      <mat-form-field class="caja1">
+                        <mat-label class="etiqueta">Fallas activas al momento</mat-label>
+                        <mat-select [(value)]="grafica06" name="grafica06" #gra6>              
+                        <mat-option value="S">Reproducir</mat-option>
+                        <mat-option value="N">No reproducir</mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                      <mat-form-field class="caja2">
+                        <mat-label class="etiqueta">Duración</mat-label>
+                        <input matInput placeholder="Duración" [disabled]="gra6.value=='N'" type="number" min="1" max="120" [(ngModel)]="duracion06" maxlength="3" autocomplete="off" name="duracion06" required #duracion06N="ngModel" >
+                        <mat-hint class="pista" align="start">Segundos: 10-120</mat-hint>
+                      </mat-form-field>
+                    </div> 
+                  
+          <div class="tituloSiguiente">(2) Agregar imágenes al carrusel</div>
+          <div class="espacio">Para que la aplcación muestre imagenes las mismas deberán almacenarse en la subcarpeta '.\imágenes' ubicada en la carpeta de apis de la aplicación. Para mayores detalles comuníquese con el administrador de la aplicación.</div>
+          <mat-form-field class="caja3">
+            <mat-label class="etiqueta">Duración entre imágenes</mat-label>
+            <input matInput placeholder="Tiempo entre imágenes" type="number" min="1" max="120" [(ngModel)]="tiempo_imagen" maxlength="3" autocomplete="off" name="tiempo_imagen" required #tiempo_imagenN="ngModel">
+            <mat-hint class="pista" align="start">Segundos: 10-120</mat-hint>
+          </mat-form-field>
+      </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <div class="pie">
+    <button class="botonOtro" mat-raised-button (click) = "validar()">
+      <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+      Guardar
+    </button>
+    <button class="botonNo" mat-raised-button (click) = "cancelar()">
+      <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+      Cancelar
+    </button>
+  </div>
+  </div>
+  

@@ -1,0 +1,307 @@
+<div class="contenido" class="mat-typography">
+    <div class="cabecera">
+      <mat-icon class="iconoDialogo" svgIcon="monitor"></mat-icon>
+      <p class="tituloDialogo"><strong>Configurar el monitor de fallas (backend)</strong></p>
+    </div>
+  
+  <mat-card class="posicion">
+    <mat-card-content >
+      <form novalidate="" #forma="ngForm">
+      <div class ="lista">
+          <div class="titulo">(1) Datos generales del backend</div>
+          <mat-form-field class="texto">
+            <mat-label class="etiqueta">Espera para el envío de mensajes</mat-label>
+            <input matInput #txtTiempo placeholder="Espera para el envío de mensajes" type="number" min="1" max="100000000" [(ngModel)]="revisar_cada" maxlength="8" autocomplete="off" name="revisar_cada" required #revisar_cadaN="ngModel" (input)="cambiando($event)">
+            <mat-hint class="pista" align="start">Tiempo de espera para el envio de las notificaciones</mat-hint>
+            <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="texto">
+            <mat-label class="etiqueta">Tiempo de la falla en el sistema para generar una notificación</mat-label>
+            <input matInput #txtTiempo placeholder="Tiempo de la falla en el sistema para generar una notificación" type="number" min="1" max="100000000" [(ngModel)]="timeout_fallas" maxlength="8" autocomplete="off" name="timeout_fallas" required #timeout_fallasN="ngModel" (input)="cambiando($event)">
+            <mat-hint class="pista" align="start">Deje en cero para que todas las fallas generen alerta</mat-hint>
+            <mat-hint class="pista" align="end">Segundos: 1-99999999</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="texto">
+            <mat-label class="etiqueta">Carpeta temporal para los archivos de trabajo</mat-label>
+            <input matInput #txtRuta placeholder="Carpeta dónde se almacenarán los archivos de trabajo" [(ngModel)]="ruta_archivos_enviar" maxlength="500" autocomplete="off" name="ruta_archivos_enviar" #ruta_archivos_enviarN="ngModel" required  (input)="cambiando($event)">
+            <mat-hint class="pista" align="start">La carpeta debe existir en el servidor</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="texto">
+            <mat-label class="etiqueta">Conexión al servidor de MMCall (consumo de servicios)</mat-label>
+            <input matInput #txtRuta placeholder="Nombre/IP del servidor MMCall" [(ngModel)]="server_mmcall" maxlength="500" autocomplete="off" name="server_mmcall" #server_mmcallN="ngModel" required  (input)="cambiando($event)">
+            <mat-hint class="pista" align="start">Debe haber conexión a este servidor</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="texto">
+              <mat-label class="etiqueta">Texto a usar para consolidar rendimiento (Planta)</mat-label>
+              <input matInput #txtRuta placeholder="Texto a usar para consolidar el indicador de rendimiento" [(ngModel)]="cad_consolidado" maxlength="20" autocomplete="off" name="cad_consolidado" #cad_consolidadoN="ngModel" required  (input)="cambiando($event)">
+              <mat-hint class="pista" align="start">Este valor se colocará en el título del indicador general</mat-hint>
+            </mat-form-field>
+          <div class="tituloSiguiente">(2) LLamadas de voz y mensajes de texto (SMS)</div>
+          <div class="cajaEstatus">
+            <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="utilizar_arduino" name="utilizar_arduino" color="warn">Utilizar la tarjeta Arduino(r) para llamadas</mat-checkbox>                
+          </div>
+          <div class="cajaDatos">
+            <mat-form-field class="caja1">
+              <mat-label class="etiqueta">Puerto serial (1)</mat-label>
+              <input matInput #txtComm placeholder="Puerto COMM (1)" [(ngModel)]="puerto_comm1" maxlength="8" autocomplete="off" name="puerto_comm1" #puerto_comm1N="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+            </mat-form-field>
+            <mat-form-field class="caja2">
+              <mat-label class="etiqueta">Parámetros del puerto serial</mat-label>
+              <input matInput #txtCommP placeholder="Parámetros del puerto serial" [(ngModel)]="puerto_comm1_par" maxlength="100" autocomplete="off" name="puerto_comm1_par" #puerto_comm1_parN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+              <mat-hint class="pista" align="start">Separe cada parámetro con una coma</mat-hint>
+              <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda01" matTooltipShowDelay = "100"></mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="cajaDatos">
+              <mat-form-field class="caja1">
+                <mat-label class="etiqueta">Puerto serial (2)</mat-label>
+                <input matInput placeholder="Puerto COMM (2)" [(ngModel)]="puerto_comm2" maxlength="8" autocomplete="off" name="puerto_comm2" #puerto_comm2N="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+              </mat-form-field>
+              <mat-form-field class="caja2">
+                <mat-label class="etiqueta">Parámetros del puerto serial</mat-label>
+                <input matInput placeholder="Parámetros del puerto serial" [(ngModel)]="puerto_comm2_par" maxlength="100" autocomplete="off" name="puerto_comm2_par" #puerto_comm2_parN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                <mat-hint class="pista" align="start">Separe cada parámetro con una coma</mat-hint>
+                <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda01" matTooltipShowDelay = "100"></mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="cajaDatos">
+                <mat-form-field class="caja1">
+                  <mat-label class="etiqueta">Puerto serial (3)</mat-label>
+                  <input matInput placeholder="Puerto COMM (3)" [(ngModel)]="puerto_comm3" maxlength="8" autocomplete="off" name="puerto_comm3" #puerto_comm3N="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                </mat-form-field>
+                <mat-form-field class="caja2">
+                  <mat-label class="etiqueta">Parámetros del puerto serial</mat-label>
+                  <input matInput placeholder="Parámetros del puerto serial" [(ngModel)]="puerto_comm3_par" maxlength="100" autocomplete="off" name="puerto_comm3_par" #puerto_comm3_parN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                  <mat-hint class="pista" align="start">Separe cada parámetro con una coma</mat-hint>
+                  <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda01" matTooltipShowDelay = "100"></mat-icon>
+                </mat-form-field>
+              </div>
+    
+              <div class="cajaDatos">
+                  <mat-form-field class="caja1">
+                    <mat-label class="etiqueta">Puerto serial (4)</mat-label>
+                    <input matInput placeholder="Puerto COMM (4)" [(ngModel)]="puerto_comm4" maxlength="8" autocomplete="off" name="puerto_comm4" #puerto_comm4N="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                  </mat-form-field>
+                  <mat-form-field class="caja2">
+                    <mat-label class="etiqueta">Parámetros del puerto serial</mat-label>
+                    <input matInput placeholder="Parámetros del puerto serial" [(ngModel)]="puerto_comm4_par" maxlength="100" autocomplete="off" name="puerto_comm4_par" #puerto_comm4_parN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                    <mat-hint class="pista" align="start">Separe cada parámetro con una coma</mat-hint>
+                    <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda01" matTooltipShowDelay = "100"></mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <div class="cajaDatos">
+                    <mat-form-field class="caja1">
+                      <mat-label class="etiqueta">Puerto serial (5)</mat-label>
+                      <input matInput placeholder="Puerto COMM (5)" [(ngModel)]="puerto_comm5" maxlength="8" autocomplete="off" name="puerto_comm5" #puerto_comm5N="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                    </mat-form-field>
+                    <mat-form-field class="caja2">
+                      <mat-label class="etiqueta">Parámetros del puerto serial</mat-label>
+                      <input matInput placeholder="Parámetros del puerto serial" [(ngModel)]="puerto_comm5_par" maxlength="100" autocomplete="off" name="puerto_comm5_par" #puerto_comm5_parN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                      <mat-hint class="pista" align="start">Separe cada parámetro con una coma</mat-hint>
+                      <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda01" matTooltipShowDelay = "100"></mat-icon>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="cajaDatos">
+                      <mat-form-field class="caja1">
+                        <mat-label class="etiqueta">Puerto serial (6)</mat-label>
+                        <input matInput placeholder="Puerto COMM (6)" [(ngModel)]="puerto_comm6" maxlength="8" autocomplete="off" name="puerto_comm6" #puerto_comm6N="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                      </mat-form-field>
+                      <mat-form-field class="caja2">
+                        <mat-label class="etiqueta">Parámetros del puerto serial</mat-label>
+                        <input matInput placeholder="Parámetros del puerto serial" [(ngModel)]="puerto_comm6_par" maxlength="100" autocomplete="off" name="puerto_comm6_par" #puerto_comm6_parN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                        <mat-hint class="pista" align="start">Separe cada parámetro con una coma</mat-hint>
+                        <mat-icon matSuffix class="iconoSufijo" svgIcon="ayuda" [matTooltip] = "ayuda01" matTooltipShowDelay = "100"></mat-icon>
+                      </mat-form-field>
+                    </div>
+                  <mat-form-field class="texto">
+                    <mat-label class="etiqueta">Carpeta dónde se guardarán los audios</mat-label>
+                    <input matInput placeholder="Carpeta dónde se guardarán los audios" [(ngModel)]="ruta_audios" maxlength="500" autocomplete="off" name="ruta_audios" #ruta_audiosN="ngModel" required  (input)="cambiando($event)">
+                    <mat-hint class="pista" align="start">La carpeta debe existir en el servidor</mat-hint>
+                  </mat-form-field>
+                  <mat-form-field class="texto">
+                    <mat-label class="etiqueta">Carpeta dónde se guardarán los mensajes de texto (SMS)</mat-label>
+                    <input matInput placeholder="Carpeta dónde se guardarán los mensajes de texto (SMS)" [(ngModel)]="ruta_sms" maxlength="500" autocomplete="off" name="ruta_sms" #ruta_smsN="ngModel" required  (input)="cambiando($event)">
+                    <mat-hint class="pista" align="start">La carpeta debe existir en el servidor</mat-hint>
+                  </mat-form-field>
+                  <div class="cajaDatos">
+                  <mat-form-field class="caja31">
+                    <mat-label class="etiqueta">Voz predeterminada para los audios</mat-label>
+                    <input matInput placeholder="Voz predeterminada para los audios" [(ngModel)]="voz_predeterminada" maxlength="255" autocomplete="off" name="voz_predeterminada" #voz_predeterminadaN="ngModel" required  (input)="cambiando($event)">
+                  </mat-form-field>
+                  <mat-form-field class="caja32">
+                      <mat-label class="etiqueta">Ciclos de reproducción</mat-label>
+                      <input matInput type="number" min="1" max="10"  placeholder="Veces a reproducir" [(ngModel)]="veces_reproducir" maxlength="2" autocomplete="off" name="veces_reproducir" #veces_reproducirN="ngModel" required  (input)="cambiando($event)">
+                      <mat-hint class="pista" align="start">Veces: 1-10</mat-hint>
+                    </mat-form-field>
+                </div>
+                  <div class="cajaDatos">
+                    <mat-form-field class="caja41">
+                      <mat-label class="etiqueta">Tiempo para la llamadas</mat-label>
+                      <input matInput type="number" min="1" max="100000000" placeholder="Timeout" [(ngModel)]="timeout_llamadas" maxlength="8" autocomplete="off" name="timeout_llamadas" #timeout_llamadasN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                      <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="caja42">
+                      <mat-label class="etiqueta">Tiempo para envío de SMS</mat-label>
+                      <input matInput type="number" min="1" max="100000000" placeholder="Timeout" [(ngModel)]="timeout_sms" maxlength="8" autocomplete="off" name="timeout_sms" #timeout_smsN="ngModel" required  (input)="cambiando($event)" [disabled]="!utilizar_arduino">
+                      <mat-hint class="pista" align="start">Segundos: 1-99999999</mat-hint>
+                    </mat-form-field>
+                    
+                    </div>
+                    <div class="cajaEstatus">
+                        <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="traducir" name="traducir" color="warn">Traducir el audio de la llamada</mat-checkbox>                
+                      </div>
+              
+          
+                    <div class="tituloSiguiente">(3) Acción de Escape al agotar el número de intentos</div>
+
+                      <div class="cajaDatos">
+                        <mat-form-field class="caja51">
+                          <mat-label class="etiqueta">Número de intentos</mat-label>
+                          <input matInput #txtTiempo placeholder="Intentos de llamada" type="number" min="1" max="3" [(ngModel)]="escape_llamadas" maxlength="8" autocomplete="off" name="escape_llamadas" required #escape_llamadasN="ngModel" (input)="cambiando($event)">
+                          <mat-hint class="pista" align="start">Veces: 1-5</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field class="caja52">
+                          <mat-label class="etiqueta">¿Qué se hará al agotar las llamadas?</mat-label>
+                          <mat-select [(value)]="escape_accion" name="escape_accion" #agotar (selectionChange)="cambiando($event)">
+                            <mat-option value="N">No hacer nada</mat-option>
+                            <mat-option value="L">Enviar mensaje a lista de distribución</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                        </div>  
+                        <mat-form-field class="texto">
+                          <mat-label class="etiqueta">Recipiente asociado al Escape de la llamada</mat-label>
+                          <mat-select [(value)]="escape_lista" #lista0 (selectionChange)=cambiando($event) [disabled]="agotar.value=='N'">
+                            <mat-option *ngFor="let lista of listas" [(value)]="lista.id">{{ lista.cadena }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                            
+                        <mat-form-field class="texto">
+                          <mat-label class="etiqueta">Mensaje a enviar</mat-label>
+                          <textarea matInput #txtTitulo cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Mensaje a enviar por Escape de llamada" [(ngModel)]="escape_mensaje" maxlength="200" autocomplete="off" name="escape_mensaje" required #escape_mensajeN="ngModel" (input)="cambiando($event)" [disabled]="agotar.value=='N'"></textarea>
+                          <mat-hint class="pista" align="end">{{escape_mensajeN.value?.length || 0}} de 200</mat-hint>
+                        </mat-form-field>
+                      <div class="cajaEstatus">
+                        <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="escape_mensaje_propio" name="escape_mensaje_propio" color="warn" [disabled]="agotar.value=='N'">Enviar un SMS al mismo número agotado</mat-checkbox>                
+                      </div>
+                    
+                    <div class="tituloSiguiente">(4) Configuración del correo que se enviará en las alertas</div>
+                    <div class="cajaEstatus">
+                      <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="correo_titulo_falla" name="correo_titulo_falla" color="warn">Mantener el texto de la falla en el título (subject) del correo</mat-checkbox>                
+                    </div>
+                    <mat-form-field class="texto">
+                        <mat-label class="etiqueta">Título del correo a enviar (Subject)</mat-label>
+                        <textarea matInput #txtTitulo cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Título que se colocará en el correo a enviar" [(ngModel)]="correo_titulo" maxlength="100" autocomplete="off" name="correo_titulo" required #correo_tituloN="ngModel" (input)="cambiando($event)"></textarea>
+                        <mat-hint class="pista" align="end">{{correo_tituloN.value?.length || 0}} de 100</mat-hint>
+                      </mat-form-field>
+                    
+                      <mat-form-field class="texto">
+                        <mat-label class="etiqueta">Cuerpo del correo a enviar (Body)</mat-label>
+                        <textarea matInput #txtTitulo cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Cuerpo que se colocará en el correo a enviar" [(ngModel)]="correo_cuerpo" maxlength="200" autocomplete="off" name="correo_cuerpo" required #correo_cuerpoN="ngModel" (input)="cambiando($event)"></textarea>
+                        <mat-hint class="pista" align="end">{{correo_cuerpoN.value?.length || 0}} de 200</mat-hint>
+                      </mat-form-field>
+                    
+                      <mat-form-field class="texto">
+                        <mat-label class="etiqueta">Firma del correo a enviar (Subject)</mat-label>
+                        <textarea matInput #txtTitulo cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" placeholder="Firma que se colocará en el correo a enviar" [(ngModel)]="correo_firma" maxlength="100" autocomplete="off" name="correo_firma" required #correo_firmaN="ngModel" (input)="cambiando($event)"></textarea>
+                        <mat-hint class="pista" align="end">{{correo_firmaN.value?.length || 0}} de 100</mat-hint>
+                      </mat-form-field>
+                      
+                      <div class="tituloSiguiente">(5) Optimización de notificaciones</div>
+                      <div class="cajaEstatus">
+                        <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="optimizar_llamada" name="optimizar_llamada" color="warn">Optmizar llamadas de voz</mat-checkbox>                
+                      </div>
+                      <div class="cajaEstatus">
+                          <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="optimizar_sms" name="optimizar_sms" color="warn">Optmizar mensajes de texto (SMS)</mat-checkbox>                
+                        </div>
+                        <div class="cajaEstatus">
+                            <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="optimizar_correo" name="optimizar_correo" color="warn">Optmizar correos electrónicos</mat-checkbox>                
+                          </div>
+                          <div class="cajaEstatus">
+                              <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="optimizar_mmcall" name="optimizar_mmcall" color="warn">Optmizar mensajes a los relojes de MMCall</mat-checkbox>                
+                            </div>
+                            <div class="cajaEstatus">
+                                <mat-checkbox class="estatus" disableRipple="true" (change)="cambiando($event)" [(ngModel)]="mantener_prioridad" name="mantener_prioridad" color="warn">Mantener la prioridad de los mensajes al optimizar</mat-checkbox>                
+                              </div>
+                                    
+                      <div class="tituloSiguiente">(6) Calificación de la atención (etiquetas y colores)</div>
+
+                      <div class="cajaColor">
+                          <mat-form-field class="caja61">
+                            <mat-label class="etiqueta">Baja atención (< %)</mat-label>
+                            <input matInput #txtTiempo placeholder="Menor a (%)" type="number" min="1" max="100" [(ngModel)]="bajo_hasta" maxlength="3" autocomplete="off" name="bajo_hasta" required #bajo_hastaN="ngModel" (input)="cambiando($event)">
+                            <mat-hint class="pista" align="start">PCT: 1-100</mat-hint>
+                          </mat-form-field>
+                            
+                        <mat-form-field class="caja62">
+                          <mat-label class="etiqueta">Etiqueta a usar</mat-label>
+                          <input matInput placeholder="Etiqueta a mostrar" [(ngModel)]="bajo_etiqueta" maxlength="30" autocomplete="off" name="bajo_etiqueta" #bajo_etiquetaN="ngModel" required  (input)="cambiando($event)">
+                          <mat-hint class="pista" align="end">{{bajo_etiquetaN.value?.length || 0}} de 30</mat-hint>
+                        </mat-form-field>
+                        <dx-color-box class="colores" [(value)]="bajo_color" applyButtonText="Aceptar" cancelButtonText="Cancelar"></dx-color-box>
+                      </div>
+                      <div class="cajaColor">
+                          <mat-form-field class="caja61">
+                            <mat-label class="etiqueta">Mediana atención (< %)</mat-label>
+                            <input matInput placeholder="Menor a (%)" type="number" min="1" max="100" [(ngModel)]="medio_hasta" maxlength="3" autocomplete="off" name="medio_hasta" required #medio_hastaN="ngModel" (input)="cambiando($event)">
+                            <mat-hint class="pista" align="start">PCT: 1-100</mat-hint>
+                          </mat-form-field>
+                        <mat-form-field class="caja62">
+                          <mat-label class="etiqueta">Etiqueta a usar</mat-label>
+                          <input matInput placeholder="Etiqueta a mostrar" [(ngModel)]="medio_etiqueta" maxlength="30" autocomplete="off" name="medio_etiqueta" #medio_etiquetaN="ngModel" required  (input)="cambiando($event)">
+                          <mat-hint class="pista" align="end">{{medio_etiquetaN.value?.length || 0}} de 30</mat-hint>
+                        </mat-form-field>
+                        <dx-color-box class="colores" [(value)]="medio_color" applyButtonText="Aceptar" cancelButtonText="Cancelar"></dx-color-box>
+                      </div>
+                      <div class="cajaColor">
+                          <mat-form-field class="caja71">
+                          <mat-label class="etiqueta">Buena atención (Etiqueta)</mat-label>
+                          <input matInput placeholder="Etiqueta a mostrar" [(ngModel)]="alto_etiqueta" maxlength="30" autocomplete="off" name="alto_etiqueta" #alto_etiquetaN="ngModel" required  (input)="cambiando($event)">
+                          <mat-hint class="pista" align="end">{{medio_etiquetaN.value?.length || 0}} de 30</mat-hint>
+                        </mat-form-field>
+                        <dx-color-box class="colores2" [(value)]="alto_color" applyButtonText="Aceptar" cancelButtonText="Cancelar"></dx-color-box>
+                      </div>
+                      <div class="tituloSiguiente">(7) Otras etiquetas</div>
+                      <div class="cajaColor">
+                          <mat-form-field class="caja71">
+                          <mat-label class="etiqueta">Etiqueta a usar (Abiertas)</mat-label>
+                          <input matInput placeholder="Etiqueta a mostrar" [(ngModel)]="noatendio_etiqueta" maxlength="30" autocomplete="off" name="noatendio_etiqueta" #noatendio_etiquetaN="ngModel" required  (input)="cambiando($event)">
+                          <mat-hint class="pista" align="end">{{noatendio_etiquetaN.value?.length || 0}} de 30</mat-hint>
+                        </mat-form-field>
+                        <dx-color-box class="colores2" [(value)]="noatendio_color" applyButtonText="Aceptar" cancelButtonText="Cancelar"></dx-color-box>
+                      </div>
+                      <div class="cajaColor">
+                          <mat-form-field class="caja71">
+                          <mat-label class="etiqueta">Etiqueta a usar (Escaladas)</mat-label>
+                          <input matInput placeholder="Etiqueta a mostrar" [(ngModel)]="escaladas_etiqueta" maxlength="30" autocomplete="off" name="escaladas_etiqueta" #escaladas_etiquetaN="ngModel" required  (input)="cambiando($event)">
+                          <mat-hint class="pista" align="end">{{escaladas_etiquetaN.value?.length || 0}} de 30</mat-hint>
+                        </mat-form-field>
+                        <dx-color-box class="colores2" [(value)]="escaladas_color" applyButtonText="Aceptar" cancelButtonText="Cancelar"></dx-color-box>
+                      </div>
+                      <div class="tituloSiguiente">(8) Autogestión de la base de datos</div>
+                      <div class="espacio">La autogestión de la base de datos es un proceso automático que <strong style="color: 'red'">eliminará permanentemente datos de la base de datos</strong> de SigmaMonitor. Las tablas históricas de alarmas, fallas, mensajes y el log se depurarán dejando sólo los meses indicados en este apartado. <strong style="color: 'tomato'">Una vez eliminados los datos, no se podrán recuperar</strong>. <strong>Se recomienda hacer descargas periódicas de los históricos.</strong></div>
+                      <mat-form-field class="texto">
+                        <mat-label class="etiqueta">Meses de historia (Ingrese cero si no desea autogestión)</mat-label>
+                        <input matInput #txtTiempo placeholder="Meses de historia" type="number" min="1" max="120" [(ngModel)]="gestion_meses" maxlength="3" autocomplete="off" name="gestion_meses" required #gestion_mesesN="ngModel" (input)="cambiando($event)">
+                        <mat-hint class="pista" align="start">Número de meses: 1-120</mat-hint>
+                      </mat-form-field>
+      
+
+      </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <div class="pie">
+    <button class="botonOtro" mat-raised-button (click) = "validar()">
+      <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+      Guardar
+    </button>
+    <button class="botonNo" mat-raised-button (click) = "cancelar()">
+      <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+      Cancelar
+    </button>
+  </div>
+  </div>
+  

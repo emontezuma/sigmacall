@@ -1,0 +1,33 @@
+<div class="contenido" class="mat-typography">
+
+  <div class="cabecera">
+    <mat-icon class="iconoDialogo" svgIcon="{{icono}}"></mat-icon>
+    <p class="tituloDialogo">{{ titulo }}</p>
+  </div>
+
+  <mat-card class="posicion">
+      <mat-card-content>
+        <form (ngSubmit)="guardar(forma)" #forma="ngForm">
+        <div class ="lista" [style.height.px]="alto">
+            {{ mensaje }}
+        </div>
+      </form>
+      </mat-card-content>
+  </mat-card>
+
+  <div class="pie">
+    
+    <button type="submit" class="botonSi" mat-raised-button (click)="validar(1)">
+      <mat-icon class="iconoBoton" svgIcon="aceptar"></mat-icon>
+      {{ boton1STR }}
+    </button>
+    <button class="botonOtro" mat-raised-button *ngIf="tBotones>1" (click)="validar(2)">
+      <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+      {{ boton2STR }}
+    </button>
+    <button class="botonOtro" mat-raised-button *ngIf="tBotones>2" (click)="validar(3)">
+      <mat-icon class="iconoBoton" svgIcon="copiar"></mat-icon>
+      {{ boton3STR }}
+    </button>
+  </div>
+</div>

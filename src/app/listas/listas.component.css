@@ -1,0 +1,236 @@
+
+#todo {
+    position: absolute;
+    width: 100%;    
+    min-height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#barraTop 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 50px;
+    min-height: 50px !important;
+    overflow: hidden;
+    background-color: #505050;
+}
+
+
+.nombreReg 
+{
+    margin-top: 5px;
+    background-color: transparent;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    overflow: hidden;
+    white-space: normal;
+    min-height: 34px !important;
+    height: 34px !important;
+    border-bottom-style: solid;
+    border-bottom-color: #CCCCCC;
+    border-bottom-width: 1px;
+    margin-bottom: 3px !important;
+}
+
+.verTarjetas
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 55px;
+    margin-bottom: 45px;
+    
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+    text-align: right;
+    font-size: 18px !important;
+    color: #EEEEEE;
+    margin: 10px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+.tarjeta 
+{
+    margin: 5px;
+    width: 380px !important;
+    height: 132px !important;
+    border-color: white;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-radius: 4px 16px !important;
+    background-color: #757575;
+}
+
+.tarjetaTotal 
+{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100% !important;
+    height: 100% !important;
+    align-content: flex-start;
+}
+
+.tarjetaIcon 
+{
+    flex: 1;
+    margin-left: -20px;
+
+}
+
+
+.dosDatos 
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.tituloIzq
+{
+    font-size: 13px;
+    color: #CCCCCC;
+    min-width: 70px !important;
+
+}
+
+.tituloDer
+{
+    font-size: 13px;
+    color: #CCCCCC;
+}
+
+.valorIzq
+{
+    color: white;
+    font-size: 16px;
+    min-width: 70px !important;
+}
+
+.valorDer
+{
+    color: white;
+    font-size: 16px;
+}
+
+.itemIcon 
+{
+    height: 128px;
+    width: 128px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.tarjetaDatos 
+{
+    display: flex;
+    flex-direction: column;
+    flex: 8;
+    text-align: left !important;
+    color: #EEEEEE;
+    font-size: 15px;
+    line-height: 17px;
+    margin-top: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.botonSup
+{
+    min-width: 240px !important;
+    padding-right: 10px;
+    margin: 0px;
+    background-color: #BBBBBB;
+    cursor: pointer !important;
+    font-size: 20px;
+
+}
+
+.iconoSup
+  {
+    margin-left: -10px !important;
+    margin-top: -4px !important;
+    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+
+.tarjetaTabla 
+{
+    display: flex;
+    flex: 1;
+}
+
+
+.titulo
+{
+    font-size: 13px;
+    color: #CCCCCC;
+}
+
+
+.iconoMail
+{
+    padding: 0px !important;
+    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: -5px !important;
+  }
+
+  .botonBuscar 
+{
+    min-width: 50px !important;
+    padding: 0;
+    margin-left: 5px;
+    background-color: #404040;
+    border-color: white !important;
+    cursor: pointer !important;
+
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    color: #CCCCCC;
+    font-size: 10px !important;
+  }
+  
+  ::ng-deep .mat-form-field-underline {
+    color: #CCCCCC;
+    font-size: 10px !important;
+  }
+
+  .buscador
+  {
+    margin-top: -10px !important;
+    font-size: 16px !important;
+    min-height: 30px;
+    height: 30px;
+    color: #CCCCCC;
+
+  }
+  
+  .buscadorCaja
+  {
+    margin-top: -10px !important;
+    margin-left: 10px !important;
+  }
+
+  .iconoIna 
+  {
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin-top: 2px;
+   margin-left: 2px;
+   width: 16px !important;
+  } 

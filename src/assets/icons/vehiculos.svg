@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" width="32" height="32" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve" preserveAspectRatio="none" viewbox="0 0 32 32">
+
+<g>
+	<defs>
+		<rect id="57229601_SVGID_1__focus" x="23" y="11" width="38" height="29"></rect>
+	</defs>
+	<use xlink:href="#57229601_SVGID_1__focus" class="stshockcolor" style="fill: rgb(33, 150, 243); overflow: visible;" data-st="fill:#75A2D9;;overflow:visible;"></use>
+	<clipPath id="57229601_SVGID_2__focus">
+		<use xlink:href="#57229601_SVGID_1__focus" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st2" style="clip-path:url(#57229601_SVGID_2__focus);;">
+		<rect x="23" y="11" class="st0" width="38" height="14" style="opacity:0.3;fill:#FFFFFF;;"></rect>
+	</g>
+</g>
+<g>
+	<defs>
+		<path id="57229601_SVGID_3__focus" d="M4.371,25.842C6.02,19.69,8.903,17,14,17c2.224,0,4,0,4,0c1.268-4.732,2-6,5-6c0,6.425,0,29,0,29    c1.606,0,38,0,38,0v2c0,2.31-3,4-9,4H6c-1.607,0-3-1.392-3-3v-8v-4C3,31,4.089,26.894,4.371,25.842z"></path>
+	</defs>
+	<use xlink:href="#57229601_SVGID_3__focus" style="overflow:visible;fill:#BDC3CE;"></use>
+	<clipPath id="57229601_SVGID_4__focus">
+		<use xlink:href="#57229601_SVGID_3__focus" style="overflow:visible;"></use>
+	</clipPath>
+	<g class="st3" style="clip-path:url(#57229601_SVGID_4__focus);;">
+		<rect x="3" y="31" class="st4" width="7" height="15" style="opacity:0.2;;"></rect>
+		<g class="st4" style="opacity:0.2;;">
+			<path class="st5" d="M23,25c0,0-4.673,0-5.743,0c-1.071,0-1.642,0.834-1.961,2.036C14.679,29.354,14.236,31,14.236,31H3V11h20V25     z" style="fill:#FFFFFF;;"></path>
+		</g>
+		<rect x="16.5" y="40" class="st4" width="44.5" height="6" style="opacity:0.2;;"></rect>
+	</g>
+</g>
+<g>
+	<g>
+		<circle class="st6" cx="45.5" cy="46.5" r="6.5" style="fill:#77726D;;"></circle>
+		<circle class="st0" cx="45.5" cy="46.5" r="3.5" style="opacity:0.3;fill:#FFFFFF;;"></circle>
+	</g>
+	<g>
+		<circle class="st6" cx="16.5" cy="46.5" r="6.5" style="fill:#77726D;;"></circle>
+		<circle class="st0" cx="16.5" cy="46.5" r="3.5" style="opacity:0.3;fill:#FFFFFF;;"></circle>
+	</g>
+</g>
+<path class="st1" d="M18,31V21c-0.928,0-3.042,0-4,0c-3.877,0-4.692,1.875-5.765,5.877C7.86,28.277,7.46,29.815,7.154,31H18z" style="fill:#E6E6E6;;"></path>
+</svg>

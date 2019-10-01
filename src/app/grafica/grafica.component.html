@@ -1,0 +1,313 @@
+<div id="todo" class="mat-typography">
+    <mat-toolbar id="barraTop" class="mat-elevation-z1">
+        <mat-toolbar-row class="barraTB">
+          <span class="example-spacer">{{ tituloGrafica }}</span>
+          <button class = "botonBuscar" mat-raised-button [matTooltip] = "ayuda01" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "filtrar()">
+            <mat-icon class="iconoMail" [svgIcon]="icono_filtrar"></mat-icon>
+          </button>
+          <button class = "botonBuscar" mat-raised-button [matTooltip] = "ayuda02" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "formato()">
+            <mat-icon class="iconoMail" svgIcon="formato"></mat-icon>
+          </button>
+          <button class = "botonBuscar" mat-raised-button [matTooltip] = "ayuda03" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "exportar()" [disabled]="vistaGrafico==5">
+              <mat-icon class="iconoMail" svgIcon="descargar"></mat-icon>
+            </button>
+          <button class = "botonBuscar" mat-raised-button [matTooltip] = "buscarTT" matTooltipClass = "hamburguesaTool" matTooltipShowDelay = "100" (click) = "buscar()" *ngIf="vistaGrafico==9">
+              <mat-icon class="iconoMail" svgIcon="buscar"></mat-icon>
+            </button>
+              
+          <div class="buscadorCaja">
+            <mat-form-field class="buscador" *ngIf="verBuscar && vistaGrafico==9">
+              <input #txtBuscar matInput class="buscarTXT" type="text" [(ngModel)]="textoBuscar" (keydown.enter)="buscado()" (keydown.escape)="escapar()" >
+            </mat-form-field>
+        </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+    <div id="contenedor" *ngIf="vistaGrafico!=4 && vistaGrafico!=5" [style.height.px]="altoPG1" [style.width.px]="anchoPG1">
+        
+      <div id="grafico" [style.backgroundColor]="color_fondo" *ngIf="verGrafico && hayDatos">
+        <dx-chart
+        id="graficoFallas"
+        [dataSource]="fallas"
+        palette="soft" [containerBackgroundColor]="color_fondo"
+        resolveLabelOverlapping="shift">
+        <dxo-size [height]="altoGrafica" [width]="anchoGrafica"></dxo-size>
+        <dxo-animation [enabled]= "true"></dxo-animation>
+        <dxo-common-pane-settings [backgroundColor]="color_fondo_barras"></dxo-common-pane-settings>
+        <dxo-title [text]="titulo">
+          <dxo-subtitle [text]="sub_titulo">
+              <dxo-font
+              [size]="sub_titulo_fuente"
+              [color]="color_letras"
+              weight="450">
+          </dxo-font>
+          </dxo-subtitle>
+          <dxo-font
+              [size]="titulo_fuente"
+              [color]="color_letras"
+              weight="550">
+          </dxo-font>
+        </dxo-title>
+        <dxi-series *ngIf="vistaGrafico==1" valueField="total" name="Total" color="#AAAAAA"></dxi-series>
+        <dxi-series *ngIf="vistaGrafico==1" valueField="buenas" [name]="alto_etiqueta" [color]="alto_color"></dxi-series>
+        <dxi-series *ngIf="vistaGrafico==1" valueField="tarde" [name]="escaladas_etiqueta" [color]="escaladas_color"></dxi-series>
+        <dxi-series *ngIf="vistaGrafico==1" valueField="noatendio" [name]="noatendio_etiqueta" [color]="noatendio_color"></dxi-series>
+        
+
+        <dxi-series *ngIf="vistaGrafico!=1" axis="total" type="bar" valueField="total" name="Frecuencia" color="skyblue">
+          <dxo-label [visible]="true" backgroundColor="#2B65EC" position="inside">
+            <dxo-font [size]="etiqueta_fuente" color="white" weight="450"></dxo-font>
+            <dxo-border color="#202020" visible="true" width="1"></dxo-border>
+          </dxo-label>
+        </dxi-series>
+        <dxi-series *ngIf="vistaGrafico!=1" axis="tiempo" type="spline" valueField="tiempo" name="Tiempo (min)" color="#AAAAAA">
+          <dxo-label [visible]="true" backgroundColor="#43464B">
+          <dxo-font [size]="etiqueta_fuente" color="white" weight="450"></dxo-font>
+          <dxo-border color="#202020" visible="true" width="1"></dxo-border>
+          </dxo-label>
+        </dxi-series>
+        <dxi-value-axis [visualRange]="maxmin2" name="tiempo" position="right" valueType="numeric" [visualRange]="maxmin2"  *ngIf="vistaGrafico!=1" >
+          <dxo-title text="Tiempo total en minutos">
+              <dxo-font [size]="etiqueta_fuente" [color]="color_letras" weight="450"></dxo-font>
+          </dxo-title>
+          <dxo-label [visible]="true" backgroundColor="#50BDF9">
+              <dxo-font [size]="etiqueta_fuente" [color]="color_letras" weight="450"></dxo-font>
+              <dxo-format [type]="fixedPoint" [precision]="0"></dxo-format>
+          </dxo-label>
+          </dxi-value-axis>
+          <dxi-value-axis [visualRange]="maxmin" name="total" position="left" valueType="numeric" [visualRange]="maxmin">
+          <dxo-label [visible]="true" backgroundColor="#50BDF9">
+              <dxo-font [size]="etiqueta_fuente" [color]="color_letras" weight="450"></dxo-font>
+              <dxo-format [type]="fixedPoint" [precision]="0"></dxo-format>
+          </dxo-label>
+          
+                  
+          </dxi-value-axis>
+
+
+
+        <dxo-common-series-settings
+            argumentField="estacion"
+            type="bar"
+            [barPadding]="0.1">
+            
+            <dxo-label
+                [visible]="true"
+                backgroundColor="rgba(0, 0, 0, 0.7)"
+                >
+                <dxo-font
+                    [size]="etiqueta_fuente"
+                    [color]="color_letras"
+                    weight="450">
+                </dxo-font>
+                <dxo-border
+                color="#202020" visible="true" width="1" >
+            </dxo-border>
+            </dxo-label>
+        </dxo-common-series-settings>
+        <dxo-common-axis-settings>
+          <dxo-grid [width]="1" color="#909090"></dxo-grid>
+          
+        </dxo-common-axis-settings>
+        <dxo-legend
+            [backgroundColor]="color_leyenda"
+            verticalAlignment="top"
+            horizontalAlignment="left">
+            <dxo-title text="Llamadas">
+                <dxo-font
+                    [size]="etiqueta_leyenda"
+                    [color]="color_letras"
+                    weight="350">
+                </dxo-font>
+              </dxo-title>
+            <dxo-font
+                [size]="etiqueta_leyenda"
+                [color]="color_letras"
+                weight="350">
+            </dxo-font>
+            <dxo-border
+                [color]="color_letras" visible="true" width="1" >
+            </dxo-border>
+            <dxo-margin left="30" right="30"></dxo-margin>
+        </dxo-legend>
+        <dxo-argument-axis >
+            <dxo-label overlappingBehavior="none">
+                <dxo-font
+                    [size]="etiqueta_leyenda"
+                    [color]="color_letras"
+                    weight="350">
+                </dxo-font>
+            </dxo-label>
+            <dxo-title [text]="texto_x">
+                <dxo-font
+                    [size]="texto_x_fuente"
+                    [color]="color_letras"
+                    weight="350">
+                </dxo-font>
+            </dxo-title>
+        </dxo-argument-axis>
+        <dxi-value-axis valueType="numeric">
+            <dxo-label>
+                <dxo-font
+                    [size]="etiqueta_fuente"
+                    [color]="color_letras"
+                    weight="400">
+                </dxo-font>
+            </dxo-label>
+            <dxo-title [text]="texto_y">
+                <dxo-font
+                    [size]="texto_y_fuente"
+                    [color]="color_letras"
+                    weight="450">
+                </dxo-font>
+            </dxo-title>
+        </dxi-value-axis>
+
+        <dxo-export [backgroundColor]="color_fondo" [enabled]="true" [fileName]="nombreArchivo" [printingEnabled]="false"></dxo-export>
+        
+      <dxo-zoom-and-pan argumentAxis="both"></dxo-zoom-and-pan>
+      <dxo-scroll-bar  [visible]="true"></dxo-scroll-bar>
+        
+    </dx-chart>
+
+
+
+
+
+      <div class="cajaTabla01" *ngIf="mostrar_tabla && vistaGrafico==1">  
+        
+      
+        <div class="lineasHeader">
+          <div class="header" *ngFor="let titulos of columnasTabla">{{ titulos }}
+          </div>      
+        </div>
+        <div class="lineasAparte">
+          <div class="columna" *ngFor="let llamada of listaLlamadas">{{ llamada.total }}
+          </div>      
+        </div>
+        <div class="lineas">
+        <div class="columna" *ngFor="let llamada of listaLlamadas">{{ llamada.buenas }}
+        </div>      
+      </div>
+      <div class="lineas">
+          <div class="columna" *ngFor="let llamada of listaLlamadas">{{ llamada.tarde }}
+          </div>      
+        </div>
+        <div class="lineas">
+            <div class="columna" *ngFor="let llamada of listaLlamadas">{{ llamada.noatendio }}
+            </div>      
+          </div>
+      </div>
+  
+      <div class="cajaTabla02" *ngIf="mostrar_tabla && vistaGrafico!=1">  
+        <div class="lineasHeader">
+          <div class="header">{{ literalGrafico }}</div>
+          <div class="header">Total de llamadas</div>
+          <div class="header">Tiempo total (min)</div>
+        </div>
+        <div class="lineasAparte" *ngFor="let falla of fallas">
+          <div class="columna">{{ falla.estacion }}</div>   
+          <div class="columna">{{ falla.total }}</div>      
+          <div class="columna">{{ falla.tiempo }}</div>      
+        </div>
+      </div>   
+    </div>   
+      
+      
+</div>
+
+<div id="topten" *ngIf="vistaGrafico==4  && verGrafico && hayDatos">  
+  
+    <div class="lineasT">
+      <div class="headerT">#</div>
+      <div class="headerT">Estación</div>
+      <div class="headerT2">Falla</div>
+      <div class="headerT">Responsable</div>
+      <div class="headerT">Frecuencia</div>
+      <div class="headerT">Tiempo total (min)</div>
+    </div>
+    <div class="lineasAparteT" *ngFor="let falla of fallas; let i = index">
+        <div class="columnaT">{{ falla.num }}</div>   
+        <div class="columnaT">{{ falla.estacion }}</div>   
+        <div class="columnaT2">{{ falla.descripcion }}</div>   
+        <div class="columnaT">{{ falla.responsable }}</div>      
+      <div class="columnaT">{{ falla.total }}</div>      
+      <div class="columnaT">{{ falla.tiempo }}</div>      
+    </div>
+  </div>   
+
+<div class="rendimiento" *ngIf="vistaGrafico==5 && verGrafico && hayDatos">
+    <div class="equipoEFI" *ngFor="let falla of fallas; let i = index" [style.backgroundColor]="(i==0 ? '#303030' : '#505050')" [style.boxShadow]="(falla.pct <= bajo_hasta ? bajo_color_todo : (falla.pct <= medio_hasta ? medio_color_todo : alto_color_todo))">
+        <div class="area" [style.color]="(falla.pct<=bajo_hasta ? bajo_color : (falla.pct<=medio_hasta ? medio_color : alto_color))">{{ falla.estacion }}</div> 
+        <div class="valorEFI" [style.color]="(falla.pct<=bajo_hasta ? bajo_color : (falla.pct<=medio_hasta ? medio_color : alto_color))" [style.color]="(falla.pct<=bajo_hasta ? bajo_color : (falla.pct<=medio_hasta ? medio_color : alto_color))">{{ falla.pctchar }}</div>
+        <dx-circular-gauge id="gauge" [value]="falla.pct" [subvalues]="falla.pct">
+            <dxo-subvalue-indicator
+            type="triangleMarker"
+            [color]="colorFTQ"
+            [offset]="3">
+            
+        </dxo-subvalue-indicator>
+            <dxo-scale
+                [startValue]="0"
+                [endValue]="100"
+                [tickInterval]="20">
+                <dxo-label [useRangeColors]="true" indentFromTick="1">
+                    <dxo-font [size]="16" [weight]="550"></dxo-font>
+                </dxo-label>
+                
+            </dxo-scale>
+            <dxo-value-indicator
+                type="triangleNeedle"
+                [color]="colorFTQ"
+                width="15"
+                [offset]="5">
+                
+            </dxo-value-indicator>
+            <dxo-range-container width="10">
+                <dxi-range [startValue]="0" [endValue]="bajo_hasta" [color]="bajo_color"></dxi-range>
+                <dxi-range [startValue]="bajo_hasta" [endValue]="medio_hasta" [color]="medio_color"></dxi-range>
+                <dxi-range [startValue]="medio_hasta" [endValue]="100" [color]="alto_color"></dxi-range>
+            </dxo-range-container>
+            <dxo-title
+                [text]="lit_FTQ"
+                horizontalAlignment="center"
+                verticalAlignment="bottom">
+                <dxo-font
+                    size="24"
+                    [color]="colorFTQ"
+                    weight="800">
+                </dxo-font>
+            </dxo-title>
+        </dx-circular-gauge>
+        <div class="cajaDatos">
+            <div class="Cajita">
+                <div class="headerM">Promedio HH:MM</div>
+                <div class="columnaM">{{ falla.prom }}</div>   
+            </div>
+            <div class="Cajita">
+                <div class="headerM">{{ alto_etiqueta}}</div>
+                <div class="columnaM"  [style.color]="alto_color">{{ falla.buenas }}</div>   
+            </div>
+            <div class="Cajita">
+                <div class="headerM">{{ escaladas_etiqueta}}</div>
+                <div class="columnaM" [style.color]="escaladas_color">{{ falla.tarde }}</div>   
+            </div>
+            <div class="Cajita">
+                <div class="headerM">{{ noatendio_etiqueta}}</div>
+                <div class="columnaM" [style.color]="noatendio_color">{{ falla.noatendio }}</div>   
+            </div>
+        </div>      
+        </div>
+    </div>
+
+    <div class="noHay" *ngIf="!hayDatos && verGrafico && vistaGrafico!=4 && vistaGrafico!=4">
+        <p class="info1">No hay datos a mostrar</p>
+        <button class="botonOtro" mat-raised-button (click) = "filtrar()" *ngIf="vistaGrafico!=4">
+          <mat-icon class="iconoBoton" svgIcon="filtrar"></mat-icon>
+          Cambie los filtros e intente de nuevo
+        </button>
+      </div>
+
+
+</div>
+

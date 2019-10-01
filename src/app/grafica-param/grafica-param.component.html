@@ -1,0 +1,58 @@
+<div class="contenido" class="mat-typography">
+  <div class="cabecera">
+    <mat-icon class="iconoDialogo" svgIcon="filtrar"></mat-icon>
+    <p class="tituloDialogo"><strong>Filtrar datos para la gráfica</strong></p>
+  </div>
+
+
+<mat-card class="posicion">
+  <mat-card-content >
+    <form novalidate="" #forma="ngForm">
+    <div class ="lista">
+
+       
+      <mat-form-field class="texto">
+        <mat-label class="etiqueta">Período automático</mat-label>
+        <mat-select [(value)]="miPeriodo" #comparacion (selectionChange)="cambiarPeriodo($event)">
+          <mat-option value="1">Establecer período</mat-option>
+          <mat-option value="10">Lo que va del día</mat-option>
+          <mat-option value="11">Lo que va de la semana</mat-option>
+          <mat-option value="12">Lo que va del mes (MTD)</mat-option>
+          <mat-option value="13">Lo que va del año (YTD)</mat-option>
+          <mat-option value="20">Ayer</mat-option>
+          <mat-option value="21">Semana anterior</mat-option>
+          <mat-option value="22">Mes anterior</mat-option>
+          <mat-option value="23">Año anterior</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="caja">
+        <mat-form-field class="caja1">
+        <mat-label class="etiqueta">Filtrar datos desde</mat-label>
+        <input #fechaDesde matInput [(ngModel)]="fecha1" [matDatepicker]="picker1" placeholder="Fecha de inicio" name="fecha1" autocomplete="off" #fechaN1="ngModel" disabled>
+        <mat-hint class="conError" *ngIf="errorFecha" align="start">{{ mensajeFecha }}</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle> 
+        <mat-datepicker #picker1 [disabled]="comparacion.value != '1'"></mat-datepicker>   
+        </mat-form-field>
+        <mat-form-field class="caja2">
+        <mat-label class="etiqueta">Filtrar datos hasta</mat-label>
+        <input #fechaDesde matInput [(ngModel)]="fecha2" [matDatepicker]="picker2" placeholder="Fecha de fin" name="fecha2" autocomplete="off" #fechaN2="ngModel" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle> 
+        <mat-datepicker #picker2 [disabled]="comparacion.value != '1'"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<div class="pie">
+  <button class="botonOtro" mat-raised-button (click) = "aceptar()">
+    <mat-icon class="iconoBoton" svgIcon="filtrar"></mat-icon>
+    Aplicar
+  </button>
+  <button class="botonNo" mat-raised-button (click) = "cancelar()">
+    <mat-icon class="iconoBoton" svgIcon="cancelar"></mat-icon>
+    Cancelar
+  </button>
+</div>
+</div>

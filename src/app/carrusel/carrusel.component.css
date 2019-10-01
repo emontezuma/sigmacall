@@ -1,0 +1,830 @@
+#grafico
+{
+    padding-bottom: 10px !important;
+    background-color: #353535;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #606060 !important;
+    border-radius: 8px 8px !important;
+    flex-direction: column;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    
+}
+
+.headerT
+{
+  width: 100%;
+  flex: 1;
+  background-color: #303030;
+  color: #EEEEEE;
+  font-size: 20px;
+  font-weight: 500;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-color: #707070;  
+  text-align: center;
+  padding: 3px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.headerT2
+{
+  width: 100%;
+  flex: 1;
+  background-color: #303030;
+  color: #EEEEEE;
+  font-size: 20px;
+  font-weight: 500;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-color: #707070;  
+  text-align: center;
+  padding: 3px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  min-width: 350px;
+}
+
+.columnaT2
+{
+  flex: 1;
+  background-color: #BBBBBB;
+  color: #000000;
+  font-size: 18px;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-color: #EEEEEE;  
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px !important;
+  padding-top: 5px !important;
+  margin-right: 5px;
+  min-width: 350px;
+}
+
+
+#topten
+{
+  width: 100%;    
+  min-height: 100%;
+  margin-top: 10px;
+  padding-bottom: 10px !important;
+  background-color: #353535;
+  border-style: solid !important;
+  border-width: 2px !important;
+  border-color: #454545 !important;
+  border-radius: 4px 4px !important;
+  box-shadow: 0px 0px 2px 2px skyblue;
+  flex: 1;    
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  overflow: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: auto;
+  padding: 10px;
+  animation-duration: 0.5s;
+  animation-name: swing;
+  animation-iteration-count: 1;
+}
+
+::ng-deep #graficoFallas
+{
+  display: flex;
+  width: 95%;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+
+#todo {
+    position: absolute;
+    width: 100%;    
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    
+}
+
+#contenedor {
+  display: flex;
+  margin-top: 10px;
+  overflow: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  animation-duration: 0.5s;
+  animation-name: swing;
+  animation-iteration-count: 1;
+}
+
+#barraTop 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 50px;
+    min-height: 50px !important;
+    overflow: hidden;
+    background-color: #505050;
+}
+
+
+.example-spacer {
+    flex: 1 1 auto;
+    text-align: left;
+    font-size: 24px !important;
+    color: #EEEEEE;
+    margin: 10px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+
+.botonSup
+{
+    min-width: 240px !important;
+    padding-right: 10px;
+    margin: 0px;
+    background-color: #BBBBBB;
+    cursor: pointer !important;
+    font-size: 20px;
+
+}
+
+.iconoSup
+  {
+    margin-left: -10px !important;
+    margin-top: -4px !important;
+    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+.iconoMail
+{
+    padding: 0px !important;
+    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: -5px !important;
+  }
+
+  .botonBuscar 
+{
+    min-width: 50px !important;
+    padding: 0;
+    margin-left: 5px;
+    background-color: #404040;
+    border-color: white !important;
+    cursor: pointer !important;
+
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    color: #CCCCCC;
+    font-size: 10px !important;
+  }
+  
+  ::ng-deep .mat-form-field-underline {
+    color: #CCCCCC;
+    font-size: 10px !important;
+  }
+
+  .buscador
+  {
+    margin-top: -10px !important;
+    font-size: 16px !important;
+    min-height: 30px;
+    height: 30px;
+    color: #CCCCCC;
+
+  }
+  
+  .buscadorCaja
+  {
+    margin-top: -10px !important;
+    margin-left: 10px !important;
+  }
+
+  .cajaTabla01 
+  {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 180px !important;
+    max-height: 180px !important;
+      flex: 1;
+      width: 95% !important;
+      border-style: solid !important;
+      border-width: 1px !important;
+      border-color: #454545;  
+      border-radius: 8px 8px;
+      box-shadow: 0px 0px 2px 2px skyblue;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    .cajaTabla02
+    {
+      margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+      flex: 1;
+      width: 95% !important;
+      border-style: solid !important;
+      border-width: 1px !important;
+      border-color: #454545;  
+      border-radius: 4px 4px;
+      box-shadow: 0px 0px 2px 2px skyblue;
+      padding: 10px;
+      overflow: auto;
+      min-height: 230px !important;
+    max-height: 230px !important;
+      }
+
+  
+    .lineasHeader 
+    {
+      width: 100%;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding: 2px;
+      border-style: solid !important;
+      border-width: 1px !important;
+      border-color: #707070;  
+      
+      min-height: 26px;
+      max-height: 26px;
+    }
+
+    .lineasAparte 
+    {
+      width: 100%;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding: 2px;
+      min-height: 20px;
+      max-height: 20px;
+      margin-top: 5px;
+    }
+
+    .lineas
+    {
+      width: 100%;
+      margin-top: 10px;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding: 2px;
+      min-height: 20px;
+      max-height: 20px;
+    }
+    .header
+    {
+      width: 100%;
+      flex: 1;
+      background-color: #303030;
+      color: #EEEEEE;
+      font-size: 18px;
+      font-weight: 500;      
+      text-align: center;
+      padding: 5px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+  .columna
+    {
+      flex: 1;
+      
+      color: #202020;
+      font-size: 18px;
+      font-weight: 550;
+      text-align: center;
+      background-color: #808080;
+      border-style: solid !important;
+      border-width: 1px !important;
+      border-color: #AAAAAA;  
+      margin: 4px;
+      min-height: 26px;
+      max-height: 26px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+
+    .lineasT 
+    {
+      width: 100%;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding: 2px;
+
+    }
+
+    .lineasAparteT 
+    {
+      width: 100%;
+      margin-top: 2px;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding: 2px !important;
+      
+
+    }
+    .headerT
+    {
+      width: 100%;
+      flex: 1;
+      background-color: #303030;
+      color: #EEEEEE;
+      font-size: 20px;
+      font-weight: 500;
+      border-style: solid !important;
+      border-width: 1px !important;
+      border-color: #707070;  
+      text-align: center;
+      padding: 3px;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5px;
+    }
+
+
+  .columnaT
+    {
+      flex: 1;
+      background-color: #BBBBBB;
+      color: #000000;
+      font-size: 18px;
+      border-style: solid !important;
+      border-width: 1px !important;
+      border-color: #EEEEEE;  
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 5px !important;
+      padding-top: 5px !important;
+      margin-right: 5px;
+    }
+
+
+    .rendimiento
+{
+  position: absolute;
+  width: 100%;    
+  min-height: 100%;
+  top: 10px;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between !important;
+  animation-duration: 0.5s;
+  animation-name: swing;
+  animation-iteration-count: 1;
+}
+
+::ng-deep #gauge
+{
+    margin: 5px !important;
+    width: 220px !important;
+    height: 220px !important;
+}
+
+.equipoEFI
+{
+  padding-bottom: 10px !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-radius: 4px 4px !important;
+  flex: 1;    
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  overflow: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  height: auto;
+  min-width: 330px !important;
+  max-width: 330px !important;
+  position: relative;
+}
+
+
+.valorEFI
+{
+    position: absolute !important;
+    padding: 3px;
+    bottom: 170px !important;
+    font-size: 30px !important;
+    font-weight: 550;
+    color: #EEEEEE;
+    
+}
+
+.area
+{
+  padding: 8px;
+  margin-top: 10px;
+  font-size: 24px !important;
+  font-weight: 550;
+  flex: 1;
+  width: 90%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.headerM
+    {
+      width: 100%;
+      flex: 1;
+      color: #EEEEEE;
+      font-size: 18px;
+      font-weight: 500;
+      text-align: center;
+
+    }
+
+    
+    .columnaM
+    {
+      margin-top: 10px;
+      flex: 1;
+      background-color: rgba(0,0,0,0.2);
+      min-height: 30px;
+      max-height: 30px;
+      color: #FFFFFF;
+      font-size: 20px;
+      font-weight: 550;
+      text-align: center;
+      padding-top: 10px;
+    }
+
+    .Cajita
+    {
+      display: flex;
+      flex-direction: column;
+      padding: 3px;
+      border-style: solid !important;
+      border-width: 1px !important;
+      border-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px 4px !important;    
+    }
+
+    .cajaDatos
+    {
+      display: flex;
+      flex-direction: row;
+      margin: 5px;
+      padding: 5px;
+      
+    }
+
+    .noHay 
+   {
+     position: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 500;
+      color: #EEEEEE;
+      
+  }
+
+    .info1
+    {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .botonOtro
+{
+    font-size: 20px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin: 5px;
+    color: #303030;
+    min-width: 80px !important;
+}
+
+.iconoBoton {
+  margin-top: -5px;
+  margin-left: -10px;
+  min-height: 24px;
+  min-width: 24px;
+}
+
+
+
+@-webkit-keyframes swing
+{
+  0%
+  {
+  -webkit-transform: translateY(15);
+  transform: translateY(15px);
+  opacity: 0;
+  }
+}
+
+
+
+.equipoEFIN
+{
+  padding-bottom: 10px !important;
+  background-color: #454545;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-radius: 8px 8px !important;
+  border-color:  #AAAAAA;
+  
+  flex: 1;    
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  min-width: 350px !important;
+  max-width: 350px !important;
+  margin-top: 20px;
+  animation-duration: 0.6s;
+  animation-name: agregarCaja;
+  animation-iteration-count: 1;
+}
+
+.cajaGeneral0
+{
+  display: flex;
+  margin: 5px;
+  width: 325px !important;
+  margin-left: 10px !important;
+}
+
+.cajaGeneral
+{
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px 4px !important;
+  min-width: 315px !important;
+  max-width: 315px !important;
+  text-align: left;
+  max-height: 45px;
+  min-height: 45px;
+  margin-left: 5px;
+  margin-top: -10px !important;
+  padding: 5px;
+  margin-left: 10px !important;
+}
+
+
+.cajaTitulo11
+{
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.1);
+  min-width: 180px !important;
+  max-width: 180px !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-radius: 4px 4px !important;
+  border-color:  #606060;
+  text-align: left;
+  max-height: 45px;
+  min-height: 45px;
+  padding: 5px !important;
+}
+
+.cajaTitulo12
+{
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.2);
+  min-width: 118px !important;
+  max-width: 118px !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-radius: 4px 4px !important;
+  border-color:  #606060;
+  text-align: left;
+  max-height: 45px;
+  min-height: 45px;
+  margin-left: 8px !important ;
+  padding: 5px;
+  position: relative;
+}
+
+.valorF
+{
+  color: tomato;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.valorF2
+{
+  color: #EEEEEE;
+  font-size: 20px !important;
+  font-weight: 450;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 3px;
+}
+
+.valorF3
+{
+  color: #EEEEEE;
+  font-size: 17px !important;
+  font-weight: 450;
+  overflow: hidden;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 38px; 
+  max-height: 38px; 
+  margin-top: 3px;
+}
+
+.valorF4
+{
+  color: #EEEEEE;
+  font-size: 15px !important;
+  font-weight: 450;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-height: 17px; 
+  max-height: 17px; 
+  margin-top: 1px;
+}
+
+
+.titulo
+{
+  color: #CCCCCC;
+  font-size: 15px;
+  margin-top: -3px;
+}
+
+.cajaGeneral1
+{
+  display: flex;
+  flex-direction: column;
+  min-width: 315px !important;
+  max-width: 315px !important;
+  text-align: left;
+  max-height: 70px;
+  min-height: 70px;
+  margin-left: 5px;
+  padding: 5px;
+  margin-left: 10px !important;
+}
+
+.cajaGeneral2
+{
+  display: flex;
+  flex-direction: column;
+  min-width: 315px !important;
+  max-width: 315px !important;
+  text-align: left;
+  max-height: 20px;
+  min-height: 20px;
+  margin-left: 5px;
+  padding: 2px;
+  margin-left: 10px !important;
+}
+
+.cajaTitulo3
+{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-height: 45px;
+  min-height: 45px;
+  max-width: 105px;
+  min-width: 105px;
+  padding: 5px;
+}
+
+.escalado
+{
+  background-color: tomato;
+  font-size: 12px;
+  
+  color: #303030;
+  position: fixed;
+  min-width: 24px;
+  max-width: 24px;
+  margin-left: 96px !important;
+  font-size: 14px !important;
+  font-weight: 550 !important;
+  text-align: center;
+  animation-duration: 0.5s;
+  animation-name: swing2;
+  animation-iteration-count: 1;
+
+}
+
+@-webkit-keyframes swing2
+{
+  0%
+  {
+    height: 5px;
+    background-color: #303030;
+  -webkit-transform: translateY(15);
+  transform: translateY(15px);
+  opacity: 0;
+  }
+  65%
+  {
+  -webkit-transform: translateY(2);
+  transform: translateY(2px);
+  opacity: 0.75;
+  }
+  100%
+  {
+  opacity: 1;
+  }
+}
+
+@-webkit-keyframes agregarCaja
+{
+  0%
+  {
+  -webkit-transform: translateY(15);
+  transform: translateY(15px);
+  opacity: 0;
+  }
+}
+.verTarjetas
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 45px;
+    
+}
+
+
+
+.operacionImagen {
+    margin-top: 10px !important;
+}
+
+.operacionIcono {
+display: flex;
+  margin-top: 10px;
+  overflow: hidden;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  
+}
+
+ #fotografia {
+    margin: 20px;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #606060 !important;
+    border-radius: 8px 8px !important;
+
+ }

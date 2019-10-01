@@ -1,0 +1,442 @@
+.contenido 
+{
+    position: relative;
+    
+
+}
+
+.iconoDialogo {
+    text-align: left !important;
+    min-height: 32px;
+    min-width: 32px;
+    flex: 1;
+}
+
+.cabecera 
+{
+    margin-top: -10px !important;
+    width: 100% !important;
+    height: 32px !important; 
+    padding: 2px;
+    color: #202020 !important;
+    background-color: #EEEEEE; 
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: skyblue;
+}
+
+.tituloDialogo 
+{
+    flex: 15;
+    text-align: center;
+    margin: auto;
+}
+
+.titulo 
+{
+    padding: 2px;
+    font-size: 16px;
+    text-align: left !important;
+    color: #303030;
+    background-color: #EEEEEE;
+    width: 485px;
+    font-weight: 525;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: skyblue;
+}
+
+.tituloSiguiente 
+{
+    margin-top: 10px;
+    padding: 2px;
+    font-size: 16px;
+    text-align: left !important;
+    color: #303030;
+    background-color: #EEEEEE;
+    width: 485px;
+    font-weight: 525;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: skyblue;
+}
+
+.lista {
+    height: 260px  !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 16px !important;
+    color: #202020;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .seleccion {
+    height: 120px  !important;
+    font-size: 16px !important;
+    color: #202020;
+    background-color: red;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #909090;
+ }
+
+ .posicion 
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: -2px;
+}
+
+.pie 
+{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 40px !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.botonNo 
+{
+    font-size: 15px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin: 5px;
+    color: #303030;
+    min-width: 80px !important;
+    background-color: rgba(255,0,0,0.2);
+}
+
+.botonOtro
+{
+    font-size: 15px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin: 5px;
+    color: #303030;
+    min-width: 80px !important;
+}
+
+.botoncito
+{
+    font-size: 15px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin-top: 10px;
+    margin-left: 15px;
+    min-width: 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+
+}
+
+.botonLista
+{
+    height: 40px !important;
+    min-height: 40px !important;
+    font-size: 17px !important;
+    font-weight: 450;
+    min-height: 32px;
+    min-width: 265px;
+    width: 265px;
+    background-color: #EEEEEE;
+    margin: 5px;
+    color: #303030;
+}
+.botonSi
+{
+    font-size: 15px !important;
+    font-weight: 550;
+    min-height: 32px;
+    margin: 5px;
+    color: #202020;
+    min-width: 80px !important;
+    background-color: rgba(0,255,0,0.2);
+}
+
+.iconoBoton {
+    margin-top: -5px;
+    margin-left: -10px;
+    min-height: 24px;
+    min-width: 24px;
+}
+
+.iconoBotoncitoSolo {
+    margin-left: -12px;
+    margin-top: -7px;
+    min-height: 24px;
+    min-width: 24px;
+}
+
+.iconoBotoncito {
+    height: 20px;
+    width: 20px;
+    padding: 1px;
+    cursor: pointer;
+}
+
+.iconoSufijo {
+    min-height: 24px;
+    min-width: 24px;
+    padding: 5px;
+}
+
+
+::ng-deep .texto {
+    margin-top: 10px;
+    width: 485px !important;
+  }
+
+  ::ng-deep .textoS {
+    width: 300px !important;
+    margin-top: 10px;
+  }
+  
+  .caja
+  {
+      display: flex;
+      margin-top: 10px;
+  }
+
+  .cajaEstatus
+  {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .cajaEstatus2
+  {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    justify-content: space-between;
+    height: 20px !important;
+    min-height: 20px !important;
+    
+  }
+
+  .caja1 {
+    width: 430px !important;
+    
+  }
+
+  .caja31 {
+    width: 200px !important;
+  }
+
+  .caja32 {
+    width: 275px !important;
+    margin-left: 10px;
+  }
+
+  .campoUnico
+  {
+      width: 100%;
+  }
+
+
+.etiqueta {
+    font-weight: 450;
+    font-size: 16px  !important;
+}
+
+.activarError {
+    padding: 2px;
+    font-size: 14px;
+    text-align: left !important;
+    color: tomato !important;
+    font-weight: 450;
+}
+
+::ng-deep .pista {
+    font-weight: 450;
+    font-size: 12px  !important;
+    margin-top: 3px;
+}
+
+::ng-deep .conError {
+    font-weight: 450;
+    font-size: 14px !important;
+    color: tomato !important;
+    margin-top: 3px;
+    text-align: right;
+    height: 15px;
+    
+}
+
+.historia {
+    display: flex;
+    width: 542px !important;
+    flex-direction: row;
+    border-style: solid;
+    border-width: 1px !important;
+    border-color: #CCCCCC;
+    padding: 5px;
+    margin-top: 10px;
+    min-height: 70px !important;
+    height: 70px !important;
+}
+
+.tituloH {
+    font-size: 13px;
+    color: #707070;
+}
+
+.valorH {
+    font-size: 16px;
+    margin-top: -5px !important;
+    color: #303030;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+::ng-deep .mat-card{
+
+    border-radius: 0px !important;
+   }
+
+.operacionImagen {
+    height: 48px;
+    width: 48px;
+}
+
+::ng-deep.mat-pseudo-checkbox{
+    display: none !important;
+  }
+
+.gris 
+{
+    background-color: #EEEEEE;
+    color: #707070;
+    padding: 2px;
+}
+
+.cajaTabla
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px !important;
+    width: 485px !important;
+}
+
+.tarjetaTabla 
+{
+    margin-top: 5px;
+    padding: 5px;
+    display: flex;
+    flex: 1;
+    width: 475px !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: skyblue;
+}
+
+.tituloIzq
+{
+    font-size: 13px;
+    color: #707070;
+    width: 180px !important;
+}
+
+.tituloDer
+{
+    font-size: 13px;
+    color: #707070;
+    width: 295px !important;
+}
+
+.valorIzq
+{
+    font-size: 15px;
+    width: 180px !important;
+}
+
+.valorDer
+{
+    font-size: 15px;
+    width: 295px !important;
+}
+
+.valorDer2
+{
+    font-size: 15px;
+}
+.valor
+{
+    font-size: 15px;
+    width: 445px !important;
+    word-break: break-all !important;
+}
+
+.dosDatos 
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.tarjetaDatos 
+{
+    padding: 5px;
+    text-align: left !important;
+    font-size: 15px;
+    line-height: 17px;
+}
+
+.tituloTarjeta
+{
+    font-size: 13px;
+    color: #707070;
+}
+
+.botoncito
+{
+    font-size: 15px !important;
+    font-weight: 450;
+    min-height: 32px;
+    margin-top: 10px;
+    margin-left: 15px;
+    min-width: 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+
+}
+
+.tresDatos
+{
+    margin-top: 10px;
+    padding-top: 5px;
+    width: 430px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top-style: solid !important;
+    border-top-width: 1px !important;
+    border-top-color: #808080;
+}
+
+.cajaBotoncitos
+{
+
+}
+
+
+
+.dosDatos60 {
+    width: 60%;
+}
+
+.dosDatos40 {
+    width: 40%;
+}

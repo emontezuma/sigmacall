@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="addmask" version="1.1"  x="0px" y="0px" width="32" height="32" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" viewbox="0 0 32 32">
+<g id="58_gear_icon_placeholder" class="icnplhld"><!--?xml version="1.0" encoding="utf-8"?-->
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<g xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" preserveAspectRatio="none" class="svgmask">
+
+<rect class="st1" width="24" height="24" style="fill:none;;"></rect>
+<path id="584345992_shock_x5F_color" class="stshockcolor" d="M20,2C20,2,6,2,4,2S2,4,2,4s0,14,0,16s2,2,2,2s14,0,16,0s2-2,2-2s0-14,0-16S20,2,20,2z   M20,20H4V4h16V20z M18,10v8h-8v-4H6V6h8v4H18z" style="fill:#7986CB;;" data-st="fill:#7986CB;;"></path>
+<rect x="10" y="10" class="st0" width="8" height="8" style="opacity:0.3;fill:#FFFFFF;;"></rect>
+</g></g>
+<g class="addon_content" viewBox="0 0 24 24" transform="translate(0,0) scale(1,1)">
+	<path fill="#455A64" d="M23.15,19.45l-1.17-0.671C22,18.689,22,18.59,22,18.5s0-0.189-0.02-0.279l1.17-0.671   c0.858-0.5,0.358-1.37,0.358-1.37l-0.5-0.859c-0.5-0.869-1.358-0.369-1.358-0.369l-1.17,0.67c-0.15-0.11-0.312-0.2-0.48-0.271V14   c0-1-1-1-1-1h-1c-1,0-1,1-1,1v1.35c-0.17,0.07-0.33,0.16-0.48,0.271l-1.17-0.67c-0.858-0.5-1.358,0.369-1.358,0.369l-0.5,0.859   c-0.5,0.87,0.358,1.37,0.358,1.37l1.17,0.671C15,18.311,15,18.41,15,18.5s0,0.189,0.02,0.279l-1.17,0.671   c-0.858,0.5-0.358,1.37-0.358,1.37l0.5,0.859c0.5,0.869,1.358,0.369,1.358,0.369l1.17-0.67c0.15,0.11,0.312,0.2,0.48,0.271V23   c0,1,1,1,1,1h1c1,0,1-1,1-1v-1.35c0.17-0.07,0.33-0.16,0.48-0.271l1.17,0.67c0.858,0.5,1.358-0.369,1.358-0.369l0.5-0.859   C24.01,19.95,23.15,19.45,23.15,19.45z M18.5,20c-0.83,0-1.5-0.67-1.5-1.5s0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5S19.33,20,18.5,20z"></path>
+	<rect fill="none" width="24" height="24"></rect>
+</g>
+</svg>
